@@ -3,40 +3,42 @@ module App
 open Elmish
 open Elmish.React
 open Feliz
+open System
 
+module Cmd =
+    let fromAsync (operation: Async<'msg>) : Cmd<'msg> =
+        let delayedCmd (dispatch: 'msg -> unit) : unit =
+            let delayedDispatch = async {
+                let! msg = operation
+                dispatch msg
+            }
+
+            Async.StartImmediate delayedDispatch
+
+        Cmd.ofSub delayedCmd
+        
 type State =
-    { Count: int }
+    { CurrentTime: DateTime }
 
-type Msg =
-    | Increment
-    | Decrement
+type Msg = | Tick
 
-let init() =
-    { Count = 0 }
+let init() = { CurrentTime = DateTime.Now }, Cmd.ofMsg Tick
 
-let update (msg: Msg) (state: State): State =
+let update (msg: Msg) (state: State) =
     match msg with
-    | Increment ->
-        { state with Count = state.Count + 1 }
+    | Tick ->
+        let nextState = { state with CurrentTime = DateTime.Now }
 
-    | Decrement ->
-        { state with Count = state.Count - 1 }
+        let step =
+            async {
+                do! Async.Sleep 1000
+                return Tick
+            }
 
-let render (state: State) (dispatch: Msg -> unit) =
-  Html.div [
-    Html.button [
-      prop.onClick (fun _ -> dispatch Increment)
-      prop.text "Increment"
-    ]
+        nextState, Cmd.fromAsync step
 
-    Html.button [
-      prop.onClick (fun _ -> dispatch Decrement)
-      prop.text "Decrement"
-    ]
+let render (state: State) (dispatch: Msg -> unit) = Html.h1 (state.CurrentTime.ToLongTimeString())
 
-    Html.h1 state.Count
-  ]
-
-Program.mkSimple init update render
+Program.mkProgram init update render
 |> Program.withReactSynchronous "elmish-app"
 |> Program.run
