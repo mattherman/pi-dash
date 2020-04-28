@@ -3,9 +3,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions.fs" />
+    <Compile Include="Widgets/Widget.fs" />
+    <Compile Include="Widgets/Empty.fs" />
+    <Compile Include="Widgets/Time.fs" />
     <Compile Include="App.fs" />
+    <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fable.DateFunctions" Version="2.6.0" />
     <PackageReference Include="Fable.Elmish.React" Version="3.0.1" />
     <PackageReference Include="Feliz" Version="0.68.10" />
   </ItemGroup>
