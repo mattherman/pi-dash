@@ -37,7 +37,38 @@ let update (msg: Msg) (state: State) =
 
         nextState, Cmd.fromAsync step
 
-let render (state: State) (dispatch: Msg -> unit) = Html.h1 (state.CurrentTime.ToLongTimeString())
+type WidgetSize =
+    | Single
+    | Double
+
+let widget (size: WidgetSize) (children: Fable.React.ReactElement list) =
+    let className = if size = Single then "widget widget-single" else "widget widget-double"
+    Html.div [
+        prop.className className
+        prop.children children
+    ]
+
+let row (children: Fable.React.ReactElement list) =
+    Html.div [
+        prop.className "row"
+        prop.children children
+    ]
+
+let render (state: State) (dispatch: Msg -> unit) =
+    Html.div [
+        prop.className "container"
+        prop.children [
+            row [
+                widget Single [ Html.h1 (state.CurrentTime.ToLongTimeString()) ]
+                widget Double [ Html.h1 "EMPTY" ]
+            ]
+            row [
+                widget Double [ Html.h1 "EMPTY" ]
+                widget Single [ Html.h1 "EMPTY" ]
+            ]
+            
+        ]
+    ]
 
 Program.mkProgram init update render
 |> Program.withReactSynchronous "elmish-app"
