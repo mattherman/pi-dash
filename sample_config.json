@@ -1,0 +1,23 @@
+{
+    "widgets": [
+        {
+            "type": "clock",
+            "size": "small",
+            "config": {
+                "timezone": "CST"
+            }
+        },
+        {
+            "type": "empty",
+            "size": "large"
+        },
+        {
+            "type": "empty",
+            "size": "large"
+        },
+        {
+            "type": "empty",
+            "size": "small"
+        }
+    ]
+}

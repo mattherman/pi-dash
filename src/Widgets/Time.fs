@@ -10,12 +10,13 @@ open Widget
 
 let now = DateTime
 type State = {
+    Name: string;
     CurrentTime: DateTime;
 }
 
 type Msg = | Tick
 
-let init() = { CurrentTime = DateTime.Now }, Cmd.ofMsg Tick
+let init(name: string) = { Name = name; CurrentTime = DateTime.Now }, Cmd.ofMsg (name, Tick)
 
 let update (msg: Msg) (state: State) =
     match msg with
@@ -25,7 +26,7 @@ let update (msg: Msg) (state: State) =
         let step =
             async {
                 do! Async.Sleep 1000
-                return Tick
+                return (state.Name, Tick)
             }
 
         nextState, Cmd.fromAsync step
