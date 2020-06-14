@@ -1,0 +1,8 @@
+{
+    "time": {
+        // Whether to display the time in 24-hour notation or
+        // 12-hour notation with AM/PM.
+        // values = true | false
+        "display24HourTime": false
+    }
+}

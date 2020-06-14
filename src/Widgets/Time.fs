@@ -11,11 +11,13 @@ open Widget
 let now = DateTime
 type State = {
     CurrentTime: DateTime;
+    Display24HourTime: bool;
 }
 
 type Msg = | Tick
 
-let init() = { CurrentTime = DateTime.Now }, Cmd.ofMsg Tick
+let init (config: Configuration.TimeConfig) =
+    { CurrentTime = DateTime.Now; Display24HourTime = config.Display24HourTime }, Cmd.ofMsg Tick
 
 let update (msg: Msg) (state: State) =
     match msg with
@@ -30,17 +32,29 @@ let update (msg: Msg) (state: State) =
 
         nextState, Cmd.fromAsync step
 
-let render (state: State) (dispatch: Msg -> unit) =
-    let time = state.CurrentTime.Format "hh:mm"
-    let half = state.CurrentTime.Format "A"
-    widget Single ["time-widget"] [
-        Html.span [
-            prop.children [
-                Html.text time
-                Html.span [
-                    prop.className "am-pm"
-                    prop.children [ Html.text half ]
-                ]
+let render12HourTime (time: DateTime) =
+    let formattedTime = time.Format "h:mm"
+    let formattedPeriod = time.Format "A"
+    Html.span [
+        prop.children [
+            Html.text formattedTime
+            Html.span [
+                prop.className "am-pm"
+                prop.children [ Html.text formattedPeriod ]
             ]
         ]
+    ]
+
+let render24HourTime (time: DateTime) =
+    let formattedTime = time.Format "H:mm"
+    Html.span [
+        Html.text formattedTime
+    ]
+
+let render (state: State) (dispatch: Msg -> unit) =
+    widget Single ["time-widget"] [
+        if state.Display24HourTime then
+            render24HourTime state.CurrentTime
+        else
+            render12HourTime state.CurrentTime
     ]

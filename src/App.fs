@@ -3,7 +3,9 @@ module App
 
 open Elmish
 open Feliz
+open Fable.Core
 open Extensions
+open Configuration
 
 type State = {
     Time: TimeWidget.State;
@@ -11,15 +13,16 @@ type State = {
 
 type Msg = | TimeMsg of TimeWidget.Msg
 
-let init() =
-    let timeWidgetState, timeWidgetCmd = TimeWidget.init();
-    let initialState = {
-        Time = timeWidgetState
-    }
-    let initialCmd = Cmd.batch [
-        Cmd.map TimeMsg timeWidgetCmd
-    ]
-    initialState, initialCmd
+let initializeWithConfig (config: Config) =
+    fun () ->
+        let timeWidgetState, timeWidgetCmd = TimeWidget.init config.TimeConfig
+        let initialState = {
+            Time = timeWidgetState
+        }
+        let initialCmd = Cmd.batch [
+            Cmd.map TimeMsg timeWidgetCmd
+        ]
+        initialState, initialCmd
 
 let update (msg: Msg) (state: State) =
     match msg with

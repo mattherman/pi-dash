@@ -26,3 +26,5 @@ yarn-error.log*
 
 .fake
 .ionide
+
+/dist/config.json
