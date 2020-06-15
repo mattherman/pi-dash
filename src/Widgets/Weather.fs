@@ -88,7 +88,7 @@ let update (msg: Msg) (state: State) =
         match result with
         | Ok weather ->
             let refreshWeather = async {
-                do! Async.Sleep state.RefreshDurationInSecs
+                do! Async.Sleep (state.RefreshDurationInSecs * 1000)
                 return LoadCurrentWeather
             }
             { state with CurrentWeather = Some weather }, Cmd.fromAsync refreshWeather
@@ -132,6 +132,6 @@ let renderTemperature weatherOption desiredUnits =
         ]
 
 let render (state: State) (dispatch: Msg -> unit) =
-    widget Single ["weather-widget"] [
+    widget Double ["weather-widget"] [
         renderTemperature state.CurrentWeather state.Units
     ]

@@ -40,7 +40,7 @@
 }
 
 .time-widget {
-    font-size: 36px;
+    font-size: 60px;
 }
 
 .time-widget .am-pm {
@@ -49,5 +49,5 @@
 }
 
 .weather-widget {
-    font-size: 36px;
+    font-size: 60px;
 }

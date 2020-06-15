@@ -52,7 +52,6 @@ let render (state: State) (dispatch: Msg -> unit) =
             row [
                 TimeWidget.render state.Time (TimeMsg >> dispatch)
                 WeatherWidget.render state.Weather (WeatherMsg >> dispatch)
-                EmptyWidget.render
             ]
             row [
                 EmptyWidget.render

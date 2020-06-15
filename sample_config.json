@@ -12,7 +12,7 @@
         // values = "fahrenheit" | "celsius"
         "units": "fahrenheit",
         // How frequently to refresh weather data in seconds
-        "refresh": 60,
+        "refreshRateInSecs": 60,
         // Zip code to retrieve weather for, assumes US country code
         "location": 12345
     }

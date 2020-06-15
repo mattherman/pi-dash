@@ -27,7 +27,7 @@ let weatherConfigDecoder : Decoder<WeatherConfig> =
     Decode.object (fun get -> {
         Units = get.Required.At [ "units" ] Decode.string
         ApiKey = get.Required.At [ "apiKey" ] Decode.string
-        Refresh = get.Required.At [ "refresh" ] Decode.int
+        Refresh = get.Required.At [ "refreshRateInSecs" ] Decode.int
         ZipCode = get.Required.At [ "location" ] Decode.int
     })
 
