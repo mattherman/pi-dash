@@ -122,9 +122,16 @@ let renderTemperature weatherOption desiredUnits =
     | Some weather ->
         let (temp, units) = weather.Temperature
         let convertedTemperature = convertTemperature temp units desiredUnits
-        let temperatureText = (sprintf "%.1f%s" convertedTemperature (unitString desiredUnits))
-        Html.span [
-            Html.text temperatureText
+        let temperatureText = sprintf "%.1f" convertedTemperature
+        let unitText = sprintf "°%s" (unitString desiredUnits)
+        Html.div [
+            prop.children [
+                Html.text temperatureText
+                Html.span [
+                    prop.className "unit"
+                    prop.children [ Html.text unitText ]
+                ]
+            ]
         ]
     | None ->
         Html.span [
