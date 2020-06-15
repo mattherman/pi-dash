@@ -1,8 +1,19 @@
 {
     "time": {
         // Whether to display the time in 24-hour notation or
-        // 12-hour notation with AM/PM.
+        // 12-hour notation with AM/PM
         // values = true | false
         "display24HourTime": false
+    },
+    "weather": {
+        // An API key for OpenWeatherMap
+        "apiKey": "open-weather-map-api-key",
+        // The temperature units to use
+        // values = "fahrenheit" | "celsius"
+        "units": "fahrenheit",
+        // How frequently to refresh weather data in seconds
+        "refresh": 60,
+        // Zip code to retrieve weather for, assumes US country code
+        "location": 12345
     }
 }

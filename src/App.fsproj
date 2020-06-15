@@ -8,8 +8,10 @@
     <Compile Include="Widgets/Widget.fs" />
     <Compile Include="Widgets/Empty.fs" />
     <Compile Include="Widgets/Time.fs" />
+    <Compile Include="Widgets/Weather.fs" />
     <Compile Include="App.fs" />
     <Compile Include="Main.fs" />
+    
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fable.DateFunctions" Version="2.6.0" />
