@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .container {
     height: 92vh;
     width: 96vw;
@@ -20,7 +24,6 @@
     border-style: solid;
     border-width: 2px;
     margin-right: 10px;
-    text-align: center;
     box-shadow: 2px 4px 8px #888888;
     background-color: white;
 
@@ -48,11 +51,15 @@
     padding-left: 5px;
 }
 
-.weather-widget {
+.weather-widget .temperature {
     font-size: 60px;
 }
 
-.weather-widget .unit {
+.weather-widget .feels-like-temperature {
+    font-size: 20px;
+}
+
+.weather-widget .temperature .unit {
     vertical-align: top;
     font-size: 50%;
     padding-left: 5px;

@@ -116,26 +116,44 @@ let temperatureUnits units =
     | Imperial -> "F"
     | Metric -> "C"
 
-let renderTemperature weatherOption units =
-    match weatherOption with
-    | Some weather ->
-        let temperatureText = sprintf "%.1f" weather.Temperature
-        let unitText = sprintf "°%s" (temperatureUnits units)
-        Html.div [
-            prop.children [
-                Html.text temperatureText
-                Html.span [
-                    prop.className "unit"
-                    prop.children [ Html.text unitText ]
+let renderTemperature weather units =
+    let temperatureText = sprintf "%.1f" weather.Temperature
+    let feelsLikeTemperatureText = sprintf "Feels like %.0f°" weather.FeelsLikeTemperature
+    let unitText = sprintf "°%s" (temperatureUnits units)
+    Html.div [
+        prop.children [
+            Html.div [
+                prop.className "temperature"
+                prop.children [
+                    Html.text temperatureText
+                    Html.span [
+                        prop.className "unit"
+                        prop.children [ Html.text unitText ]
+                    ]
+                ]
+                
+            ]
+            Html.div [
+                prop.className "feels-like-temperature"
+                prop.children [
+                    Html.text feelsLikeTemperatureText
                 ]
             ]
         ]
+    ]
+
+let renderWeather (state: State) =
+    match state.CurrentWeather with
+    | Some weather ->
+        Html.div [
+            renderTemperature weather state.Units
+        ]
     | None ->
-        Html.span [
+        Html.div [
             Html.text "--"
         ]
 
 let render (state: State) (dispatch: Msg -> unit) =
     widget Double ["weather-widget"] [
-        renderTemperature state.CurrentWeather state.Units
+        renderWeather state
     ]
