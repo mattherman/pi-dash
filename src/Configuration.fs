@@ -20,14 +20,14 @@ type Config = {
 
 let timeConfigDecoder : Decoder<TimeConfig> =
     Decode.object (fun get -> {
-        Display24HourTime = get.Required.At [ "display24HourTime" ] Decode.bool
+        Display24HourTime = get.Optional.At [ "display24HourTime" ] Decode.bool |> Option.defaultValue false
     })
 
 let weatherConfigDecoder : Decoder<WeatherConfig> =
     Decode.object (fun get -> {
-        Units = get.Required.At [ "units" ] Decode.string
+        Units = get.Optional.At [ "units" ] Decode.string |> Option.defaultValue "standard"
         ApiKey = get.Required.At [ "apiKey" ] Decode.string
-        Refresh = get.Required.At [ "refreshRateInSecs" ] Decode.int
+        Refresh = get.Optional.At [ "refreshRateInSecs" ] Decode.int |> Option.defaultValue 600
         ZipCode = get.Required.At [ "location" ] Decode.int
     })
 

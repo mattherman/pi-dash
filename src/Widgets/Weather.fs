@@ -8,12 +8,10 @@ open Extensions
 open Widget
 open Configuration
 
-type TemperatureUnit =
-    | Fahrenheit
-    | Celsius
-    | Kelvin
-
-type Temperature = float * TemperatureUnit
+type MeasurementSystem =
+    | Standard
+    | Imperial
+    | Metric
 
 type WeatherCondition = {
     Id: int;
@@ -22,8 +20,8 @@ type WeatherCondition = {
 
 type Weather = {
     WeatherConditions: WeatherCondition list;
-    Temperature: Temperature;
-    FeelsLikeTemperature: Temperature
+    Temperature: float;
+    FeelsLikeTemperature: float;
     Humidity: int;
     WindSpeed: float;
     WindDirection: int;
@@ -39,8 +37,8 @@ let weatherConditionDecoder : Decoder<WeatherCondition> =
 let weatherDecoder : Decoder<Weather> =
     Decode.object (fun get -> {
         WeatherConditions = get.Required.At [ "weather" ] (Decode.list weatherConditionDecoder)
-        Temperature = (get.Required.At [ "main"; "temp" ] Decode.float, Kelvin)
-        FeelsLikeTemperature = (get.Required.At [ "main"; "feels_like" ] Decode.float, Kelvin)
+        Temperature = (get.Required.At [ "main"; "temp" ] Decode.float)
+        FeelsLikeTemperature = (get.Required.At [ "main"; "feels_like" ] Decode.float)
         Humidity = get.Required.At [ "main"; "humidity" ] Decode.int
         WindSpeed = get.Required.At [ "wind"; "speed" ] Decode.float
         WindDirection = get.Required.At [ "wind"; "deg" ] Decode.int
@@ -48,7 +46,7 @@ let weatherDecoder : Decoder<Weather> =
     })
 
 type State = {
-    Units: TemperatureUnit
+    Units: MeasurementSystem
     ApiKey: string
     ZipCode: int;
     RefreshDurationInSecs: int;
@@ -59,24 +57,35 @@ type Msg =
     | LoadCurrentWeather
     | LoadedCurrentWeather of Result<Weather, string>
 
-let toTemperatureUnits units =
+let toMeasurementSystem units =
     match units with
-    | "fahrenheit" -> Fahrenheit
-    | "celsius" -> Celsius
-    | _ -> Kelvin
+    | "imperial" -> Imperial
+    | "metric" -> Metric
+    | _ -> Standard
+
+let toUnits measurementSystem =
+    match measurementSystem with
+    | Imperial -> "imperial"
+    | Metric -> "metric"
+    | Standard -> "standard"
 
 let init (config: WeatherConfig) =
     let initialState =
         { CurrentWeather = None
-          Units = config.Units |> toTemperatureUnits
+          Units = config.Units |> toMeasurementSystem
           ApiKey = config.ApiKey
           ZipCode = config.ZipCode
           RefreshDurationInSecs = config.Refresh }
     initialState, Cmd.ofMsg LoadCurrentWeather
 
-let loadCurrentTemperature apiKey zipCode =
+let loadCurrentTemperature apiKey zipCode units =
     async {
-        let endpoint = sprintf "https://api.openweathermap.org/data/2.5/weather?zip=%d&appid=%s" zipCode apiKey
+        let unitsParameter =
+            match units with
+            | Imperial -> "&units=imperial"
+            | Metric -> "&units=metric"
+            | Standard -> ""
+        let endpoint = sprintf "https://api.openweathermap.org/data/2.5/weather?zip=%d&appid=%s%s" zipCode apiKey unitsParameter
         let! (status, responseContent) = Http.get endpoint
         match status with
         | 200 ->
@@ -89,7 +98,7 @@ let loadCurrentTemperature apiKey zipCode =
 let update (msg: Msg) (state: State) =
     match msg with
     | LoadCurrentWeather ->
-        state, Cmd.fromAsync (loadCurrentTemperature state.ApiKey state.ZipCode)
+        state, Cmd.fromAsync (loadCurrentTemperature state.ApiKey state.ZipCode state.Units)
     | LoadedCurrentWeather result ->
         match result with
         | Ok weather ->
@@ -101,35 +110,17 @@ let update (msg: Msg) (state: State) =
         | Error err ->
             { state with CurrentWeather = None }, Cmd.none
 
-let convertTemperature desiredUnits (temperatureWithUnits: Temperature) =
-    let (temperatureValue, temperatureUnits) = temperatureWithUnits
-    match temperatureUnits, desiredUnits with
-    | Kelvin, Fahrenheit ->
-        (9.0/5.0) * (temperatureValue - 273.15) + 32.0
-    | Kelvin, Celsius ->
-        temperatureValue - 273.15
-    | Fahrenheit, Kelvin ->
-        temperatureValue + 459.67 * (5.0/9.0)
-    | Fahrenheit, Celsius ->
-        temperatureValue - 32.0 * (5.0/9.0)
-    | Celsius, Kelvin ->
-        temperatureValue + 273.15
-    | Celsius, Fahrenheit ->
-        temperatureValue * (9.0/5.0) + 32.0
-    | _, _ -> temperatureValue
-
-let unitString units =
+let temperatureUnits units =
     match units with
-    | Kelvin -> "K"
-    | Fahrenheit -> "F"
-    | Celsius -> "C"
+    | Standard -> "K"
+    | Imperial -> "F"
+    | Metric -> "C"
 
-let renderTemperature weatherOption desiredUnits =
+let renderTemperature weatherOption units =
     match weatherOption with
     | Some weather ->
-        let convertedTemperature = weather.Temperature |> convertTemperature desiredUnits
-        let temperatureText = sprintf "%.1f" convertedTemperature
-        let unitText = sprintf "°%s" (unitString desiredUnits)
+        let temperatureText = sprintf "%.1f" weather.Temperature
+        let unitText = sprintf "°%s" (temperatureUnits units)
         Html.div [
             prop.children [
                 Html.text temperatureText
