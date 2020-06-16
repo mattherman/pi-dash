@@ -1,5 +1,5 @@
 [<RequireQualifiedAccessAttribute>]
-module TimeWidget
+module Time
 
 open Elmish
 open Feliz
@@ -7,6 +7,7 @@ open System
 open Fable.DateFunctions
 open Extensions
 open Widget
+open Configuration
 
 let now = DateTime
 type State = {
@@ -16,7 +17,7 @@ type State = {
 
 type Msg = | Tick
 
-let init (config: Configuration.TimeConfig) =
+let init (config: TimeConfig) =
     { CurrentTime = DateTime.Now; Display24HourTime = config.Display24HourTime }, Cmd.ofMsg Tick
 
 let update (msg: Msg) (state: State) =

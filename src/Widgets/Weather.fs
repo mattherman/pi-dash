@@ -1,4 +1,4 @@
-module WeatherWidget
+module Weather
 
 open Elmish
 open Fable.SimpleHttp
@@ -6,11 +6,14 @@ open Thoth.Json
 open Feliz
 open Extensions
 open Widget
+open Configuration
 
 type TemperatureUnit =
     | Fahrenheit
     | Celsius
     | Kelvin
+
+type Temperature = float * TemperatureUnit
 
 type WeatherCondition = {
     Id: int;
@@ -19,8 +22,8 @@ type WeatherCondition = {
 
 type Weather = {
     WeatherConditions: WeatherCondition list;
-    Temperature: (float * TemperatureUnit);
-    FeelsLikeTemperature: (float * TemperatureUnit);
+    Temperature: Temperature;
+    FeelsLikeTemperature: Temperature
     Humidity: int;
     WindSpeed: float;
     WindDirection: int;
@@ -56,17 +59,20 @@ type Msg =
     | LoadCurrentWeather
     | LoadedCurrentWeather of Result<Weather, string>
 
-let init (config: Configuration.WeatherConfig) =
-    let units =
-        match config.Units with
-        | "fahrenheit" -> Fahrenheit
-        | "celsius" -> Celsius
-        | _ -> Kelvin
-    { CurrentWeather = None
-      Units = units
-      ApiKey = config.ApiKey
-      ZipCode = config.ZipCode
-      RefreshDurationInSecs = config.Refresh }, Cmd.ofMsg LoadCurrentWeather
+let toTemperatureUnits units =
+    match units with
+    | "fahrenheit" -> Fahrenheit
+    | "celsius" -> Celsius
+    | _ -> Kelvin
+
+let init (config: WeatherConfig) =
+    let initialState =
+        { CurrentWeather = None
+          Units = config.Units |> toTemperatureUnits
+          ApiKey = config.ApiKey
+          ZipCode = config.ZipCode
+          RefreshDurationInSecs = config.Refresh }
+    initialState, Cmd.ofMsg LoadCurrentWeather
 
 let loadCurrentTemperature apiKey zipCode =
     async {
@@ -95,21 +101,22 @@ let update (msg: Msg) (state: State) =
         | Error err ->
             { state with CurrentWeather = None }, Cmd.none
 
-let convertTemperature (temp: float) units desiredUnits =
-    match units, desiredUnits with
+let convertTemperature desiredUnits (temperatureWithUnits: Temperature) =
+    let (temperatureValue, temperatureUnits) = temperatureWithUnits
+    match temperatureUnits, desiredUnits with
     | Kelvin, Fahrenheit ->
-        (9.0/5.0) * (temp - 273.15) + 32.0
+        (9.0/5.0) * (temperatureValue - 273.15) + 32.0
     | Kelvin, Celsius ->
-        temp - 273.15
+        temperatureValue - 273.15
     | Fahrenheit, Kelvin ->
-        temp + 459.67 * (5.0/9.0)
+        temperatureValue + 459.67 * (5.0/9.0)
     | Fahrenheit, Celsius ->
-        temp - 32.0 * (5.0/9.0)
+        temperatureValue - 32.0 * (5.0/9.0)
     | Celsius, Kelvin ->
-        temp + 273.15
+        temperatureValue + 273.15
     | Celsius, Fahrenheit ->
-        temp * (9.0/5.0) + 32.0
-    | _, _ -> temp
+        temperatureValue * (9.0/5.0) + 32.0
+    | _, _ -> temperatureValue
 
 let unitString units =
     match units with
@@ -120,8 +127,7 @@ let unitString units =
 let renderTemperature weatherOption desiredUnits =
     match weatherOption with
     | Some weather ->
-        let (temp, units) = weather.Temperature
-        let convertedTemperature = convertTemperature temp units desiredUnits
+        let convertedTemperature = weather.Temperature |> convertTemperature desiredUnits
         let temperatureText = sprintf "%.1f" convertedTemperature
         let unitText = sprintf "°%s" (unitString desiredUnits)
         Html.div [

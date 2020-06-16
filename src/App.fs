@@ -8,36 +8,36 @@ open Extensions
 open Configuration
 
 type State = {
-    Time: TimeWidget.State;
-    Weather: WeatherWidget.State;
+    Time: Time.State;
+    Weather: Weather.State;
 }
 
 type Msg =
-    | TimeMsg of TimeWidget.Msg
-    | WeatherMsg of WeatherWidget.Msg
+    | TimeMsg of Time.Msg
+    | WeatherMsg of Weather.Msg
 
 let initializeWithConfig (config: Config) =
     fun () ->
-        let timeWidgetState, timeWidgetCmd = TimeWidget.init config.TimeConfig
-        let weatherWidgetState, weatherWidgetCmd = WeatherWidget.init config.WeatherConfig
+        let timeState, timeCmd = Time.init config.TimeConfig
+        let weatherState, weatherCmd = Weather.init config.WeatherConfig
         let initialState = {
-            Time = timeWidgetState
-            Weather = weatherWidgetState
+            Time = timeState
+            Weather = weatherState
         }
         let initialCmd = Cmd.batch [
-            Cmd.map TimeMsg timeWidgetCmd
-            Cmd.map WeatherMsg weatherWidgetCmd
+            Cmd.map TimeMsg timeCmd
+            Cmd.map WeatherMsg weatherCmd
         ]
         initialState, initialCmd
 
 let update (msg: Msg) (state: State) =
     match msg with
     | TimeMsg timeMsg ->
-        let updatedTimeWidgetState, timeWidgetCmd = TimeWidget.update timeMsg state.Time
-        { state with Time = updatedTimeWidgetState }, Cmd.map TimeMsg timeWidgetCmd
+        let updatedTimeState, timeCmd = Time.update timeMsg state.Time
+        { state with Time = updatedTimeState }, Cmd.map TimeMsg timeCmd
     | WeatherMsg weatherMsg ->
-        let updatedWeatherWidgetState, weatherWidgetCmd = WeatherWidget.update weatherMsg state.Weather
-        { state with Weather = updatedWeatherWidgetState }, Cmd.map WeatherMsg weatherWidgetCmd
+        let updatedWeatherState, weatherCmd = Weather.update weatherMsg state.Weather
+        { state with Weather = updatedWeatherState }, Cmd.map WeatherMsg weatherCmd
 
 let row (children: Fable.React.ReactElement list) =
     Html.div [
@@ -50,8 +50,8 @@ let render (state: State) (dispatch: Msg -> unit) =
         prop.className "container"
         prop.children [
             row [
-                TimeWidget.render state.Time (TimeMsg >> dispatch)
-                WeatherWidget.render state.Weather (WeatherMsg >> dispatch)
+                Time.render state.Time (TimeMsg >> dispatch)
+                Weather.render state.Weather (WeatherMsg >> dispatch)
             ]
             row [
                 EmptyWidget.render
