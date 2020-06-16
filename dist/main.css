@@ -51,6 +51,11 @@ body {
     padding-left: 5px;
 }
 
+.weather-widget {
+    display: flex;
+    flex-direction: row;
+}
+
 .weather-widget .temperature {
     font-size: 60px;
 }
@@ -63,4 +68,17 @@ body {
     vertical-align: top;
     font-size: 50%;
     padding-left: 5px;
+}
+
+.weather-widget .condition {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.weather-widget .condition .condition-icon {
+    font-size: 50px;
+    padding-bottom: 5px;
 }

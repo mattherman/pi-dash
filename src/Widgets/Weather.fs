@@ -142,18 +142,30 @@ let renderTemperature weather units =
         ]
     ]
 
-let renderWeather (state: State) =
-    match state.CurrentWeather with
-    | Some weather ->
-        Html.div [
-            renderTemperature weather state.Units
+let renderWeatherCondition (weatherCondition: WeatherCondition) =
+    Html.span [
+        prop.className "condition"
+        prop.children [
+            Html.div [
+                Html.i [
+                    prop.classes [ "condition-icon"; "wi"; "wi-day-sunny" ]
+                ]
+            ]
+            Html.div [
+                Html.text weatherCondition.Description
+            ]
         ]
-    | None ->
-        Html.div [
-            Html.text "--"
-        ]
+    ]
 
 let render (state: State) (dispatch: Msg -> unit) =
-    widget Double ["weather-widget"] [
-        renderWeather state
-    ]
+    match state.CurrentWeather with
+    | Some weather ->
+        widget Double ["weather-widget"] [
+            renderTemperature weather state.Units
+            if not (List.isEmpty weather.WeatherConditions) then
+                renderWeatherCondition weather.WeatherConditions.Head
+        ]
+    | None ->
+        widget Double ["weather-widget"] [
+            Html.text "--"
+        ]
