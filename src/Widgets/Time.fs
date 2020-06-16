@@ -40,7 +40,7 @@ let render12HourTime (time: DateTime) =
         prop.children [
             Html.text formattedTime
             Html.span [
-                prop.className "am-pm"
+                prop.className "time-period"
                 prop.children [ Html.text formattedPeriod ]
             ]
         ]
@@ -53,7 +53,7 @@ let render24HourTime (time: DateTime) =
     ]
 
 let render (state: State) (dispatch: Msg -> unit) =
-    widget Single ["time-widget"] [
+    widget Single ["time"] [
         if state.Display24HourTime then
             render24HourTime state.CurrentTime
         else

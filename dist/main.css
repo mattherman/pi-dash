@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 60px;
 }
 
 .container {
@@ -42,43 +43,73 @@ body {
     flex: 2;
 }
 
-.time-widget {
-    font-size: 60px;
-}
-
-.time-widget .am-pm {
+.time-period {
     font-size: 50%;
     padding-left: 5px;
 }
 
-.weather-widget {
+.weather {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.weather-widget .temperature {
-    font-size: 60px;
+.current-weather {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
 }
 
-.weather-widget .feels-like-temperature {
+.temperature-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-right: 30px;
+}
+
+.hi-lo-temperature {
+    font-size: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.feels-like-temperature {
     font-size: 20px;
 }
 
-.weather-widget .temperature .unit {
+.temperature-unit {
     vertical-align: top;
     font-size: 50%;
     padding-left: 5px;
 }
 
-.weather-widget .condition {
+.weather-condition-container {
     display: flex;
     flex-direction: column;
-    padding-left: 40px;
+    justify-content: space-evenly;
+}
+
+.weather-condition {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.weather-condition-icon {
+    font-size: 50px;
+    padding-bottom: 5px;
+}
+
+.wind {
+    display: flex;
+    flex-direction: column;
     font-size: 20px;
     text-align: center;
 }
 
-.weather-widget .condition .condition-icon {
+.wind-icon {
     font-size: 50px;
-    padding-bottom: 5px;
 }
