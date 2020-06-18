@@ -125,9 +125,10 @@ let renderTemperature weather units =
     let feelsLikeTemperatureText = sprintf "Feels like %.0f°" weather.FeelsLikeTemperature
     let unitText = sprintf "°%s" (temperatureUnits units)
     Html.div [
+        prop.className "temperature"
         prop.children [
             Html.div [
-                prop.className "temperature"
+                prop.className "current-temperature"
                 prop.children [
                     Html.text temperatureText
                     Html.span [
@@ -148,7 +149,7 @@ let renderTemperature weather units =
 
 let renderTemperatureRange weather =
     Html.div [
-        prop.className "hi-lo-temperature"
+        prop.className "temperature-range"
         prop.children [
             Html.div [
                 Html.text (sprintf "%.0f°" weather.HighTemperature)

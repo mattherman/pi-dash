@@ -57,31 +57,41 @@ body {
 .current-weather {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     height: 100%;
+    flex: 1;
 }
 
 .temperature-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding-right: 30px;
 }
 
-.hi-lo-temperature {
-    font-size: 35px;
+.temperature {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.feels-like-temperature {
-    font-size: 20px;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
 }
 
 .temperature-unit {
     vertical-align: top;
     font-size: 50%;
     padding-left: 5px;
+}
+
+.feels-like-temperature {
+    font-size: 20px;
+}
+
+.temperature-range {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    font-size: 35px;
 }
 
 .weather-condition-container {
@@ -93,9 +103,10 @@ body {
 .weather-condition {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    flex: 1;
     font-size: 20px;
     text-align: center;
-    margin-top: 20px;
 }
 
 .weather-condition-icon {
@@ -106,10 +117,16 @@ body {
 .wind {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    flex: 1;
     font-size: 20px;
     text-align: center;
 }
 
 .wind-icon {
     font-size: 50px;
+}
+
+.forecasted-weather {
+    flex: 1;
 }
