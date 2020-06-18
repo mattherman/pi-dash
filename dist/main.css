@@ -27,12 +27,6 @@ body {
     margin-right: 10px;
     box-shadow: 2px 4px 8px #888888;
     background-color: white;
-
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    justify-content: center;
-    align-items: center;
 }
 
 .widget-single {
@@ -41,6 +35,12 @@ body {
 
 .widget-double {
     flex: 2;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .time-period {
