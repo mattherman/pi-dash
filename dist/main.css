@@ -114,9 +114,16 @@ body {
 
 .forecasted-weather {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
     flex: 1;
+    font-size: 20px;
+}
+
+.daily-forecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .loading-weather {

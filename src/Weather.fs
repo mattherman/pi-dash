@@ -67,7 +67,7 @@ let currentWeatherDecoder : Decoder<CurrentWeather> =
 
 let unixEpochToTimestamp unix =
     let epoch = DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-    epoch.AddMilliseconds unix
+    epoch.AddSeconds unix
 
 let dailyWeatherDecoder : Decoder<DailyWeather> =
     Decode.object (fun get -> {
@@ -217,18 +217,18 @@ let renderTemperature weather units =
         ]
     ]
 
-let renderTemperatureRange weather =
+let renderTemperatureRange highTemp lowTemp =
     Html.div [
         prop.className "temperature-range"
         prop.children [
             Html.div [
-                Html.text (sprintf "%.0f°" weather.HighTemperature)
+                Html.text (sprintf "%.0f°" highTemp)
                 Html.i [
                     prop.classes [ "wi"; "wi-direction-up" ]
                 ]
             ]
             Html.div [
-                Html.text (sprintf "%.0f°" weather.LowTemperature)
+                Html.text (sprintf "%.0f°" lowTemp)
                 Html.i [
                     prop.classes [ "wi"; "wi-direction-down" ]
                 ]
@@ -282,7 +282,8 @@ let renderCurrentWeather weather units =
                 prop.children [
                     renderTemperature weather.Current units
                     if not (List.isEmpty weather.Daily) then
-                        renderTemperatureRange (weather.Daily |> List.head)
+                        let forecast = weather.Daily |> List.head
+                        renderTemperatureRange forecast.HighTemperature forecast.LowTemperature
                 ]
             ]
             Html.div [
@@ -296,12 +297,32 @@ let renderCurrentWeather weather units =
         ]
     ]
 
-let renderDailyWeather () =
+let renderDailyWeatherForecast (weather: DailyWeather) =
+    let dayOfWeek =
+        match weather.Date.DayOfWeek with
+        | DayOfWeek.Sunday -> "SUN"
+        | DayOfWeek.Monday -> "MON"
+        | DayOfWeek.Tuesday -> "TUE"
+        | DayOfWeek.Wednesday -> "WED"
+        | DayOfWeek.Thursday -> "THU"
+        | DayOfWeek.Friday -> "FRI"
+        | DayOfWeek.Saturday -> "SAT"
+        | _ -> ""
+
+    Html.div [
+        prop.className "daily-forecast"
+        prop.children [
+            if not (List.isEmpty weather.WeatherConditions) then
+                renderWeatherCondition (weather.WeatherConditions |> List.head)
+            renderTemperatureRange weather.HighTemperature weather.LowTemperature
+            Html.text (sprintf "%s" dayOfWeek)
+        ]
+    ]
+
+let renderDailyWeather (dailyWeather: DailyWeather list) (units: MeasurementSystem) =
     Html.div [
         prop.className "forecasted-weather"
-        prop.children [
-            Html.text "FORECAST"
-        ]
+        prop.children (dailyWeather |> List.map renderDailyWeatherForecast)
     ]
 
 let render (state: State) (dispatch: Msg -> unit) =
@@ -311,7 +332,7 @@ let render (state: State) (dispatch: Msg -> unit) =
             prop.classes [ "box"; "weather" ]
             prop.children [
                 renderCurrentWeather weather state.Units
-                renderDailyWeather ()
+                renderDailyWeather (weather.Daily |> List.skip 1 |> List.take 5) state.Units
             ]
         ]
     | None ->
