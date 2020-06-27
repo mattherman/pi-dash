@@ -43,6 +43,7 @@ type DailyWeather = {
     HighTemperature: float;
     LowTemperature: float;
     WeatherConditions: WeatherCondition list;
+    Rain: float option;
 }
 
 type Weather = {
@@ -75,6 +76,7 @@ let dailyWeatherDecoder : Decoder<DailyWeather> =
         HighTemperature = get.Required.At [ "temp"; "max" ] Decode.float
         LowTemperature = get.Required.At [ "temp"; "min" ] Decode.float
         WeatherConditions = get.Required.At [ "weather" ] (Decode.list weatherConditionDecoder)
+        Rain = get.Optional.At [ "rain" ] Decode.float
     })
 
 let weatherDecoder : Decoder<Weather> =
