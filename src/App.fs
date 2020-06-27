@@ -39,24 +39,11 @@ let update (msg: Msg) (state: State) =
         let updatedWeatherState, weatherCmd = Weather.update weatherMsg state.Weather
         { state with Weather = updatedWeatherState }, Cmd.map WeatherMsg weatherCmd
 
-let row (children: Fable.React.ReactElement list) =
-    Html.div [
-        prop.className "row"
-        prop.children children
-    ]
-
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
         prop.className "container"
         prop.children [
-            row [
-                Time.render state.Time (TimeMsg >> dispatch)
-                Weather.render state.Weather (WeatherMsg >> dispatch)
-            ]
-            row [
-                EmptyWidget.render
-                EmptyWidget.render
-                EmptyWidget.render
-            ]
+            Time.render state.Time (TimeMsg >> dispatch)
+            Weather.render state.Weather (WeatherMsg >> dispatch)
         ]
     ]

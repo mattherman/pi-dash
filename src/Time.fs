@@ -6,7 +6,6 @@ open Feliz
 open System
 open Fable.DateFunctions
 open Extensions
-open Widget
 open Configuration
 
 let now = DateTime
@@ -53,9 +52,12 @@ let render24HourTime (time: DateTime) =
     ]
 
 let render (state: State) (dispatch: Msg -> unit) =
-    widget Single ["time"] [
-        if state.Display24HourTime then
-            render24HourTime state.CurrentTime
-        else
-            render12HourTime state.CurrentTime
+    Html.div [
+        prop.classes [ "box"; "time" ]
+        prop.children [
+            if state.Display24HourTime then
+                render24HourTime state.CurrentTime
+            else
+                render12HourTime state.CurrentTime
+        ]
     ]

@@ -5,10 +5,8 @@
   <ItemGroup>
     <Compile Include="Extensions.fs" />
     <Compile Include="Configuration.fs" />
-    <Compile Include="Widgets/Widget.fs" />
-    <Compile Include="Widgets/Empty.fs" />
-    <Compile Include="Widgets/Time.fs" />
-    <Compile Include="Widgets/Weather.fs" />
+    <Compile Include="Time.fs" />
+    <Compile Include="Weather.fs" />
     <Compile Include="App.fs" />
     <Compile Include="Main.fs" />
     

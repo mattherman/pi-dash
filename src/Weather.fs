@@ -5,7 +5,6 @@ open Fable.SimpleHttp
 open Thoth.Json
 open Feliz
 open Extensions
-open Widget
 open Configuration
 open System
 
@@ -259,7 +258,7 @@ let windSpeedUnits units =
     | Imperial -> "mph"
 
 let renderWind weather units =
-    let iconClass = sprintf "towards-%d-deg" weather.WindDirection
+    let iconClass = sprintf "from-%d-deg" weather.WindDirection
     Html.div [
         prop.className "wind"
         prop.children [
@@ -274,41 +273,53 @@ let renderWind weather units =
         ]
     ]
 
-let render (state: State) (dispatch: Msg -> unit) =
-    match state.Weather with
-    | Some weather ->
-        widget Widget.Double ["weather"] [
+let renderCurrentWeather weather units =
+    Html.div [
+        prop.className "current-weather"
+        prop.children [
             Html.div [
-                prop.className "current-weather"
+                prop.className "temperature-container"
                 prop.children [
-                    Html.div [
-                        prop.className "temperature-container"
-                        prop.children [
-                            renderTemperature weather.Current state.Units
-                            if not (List.isEmpty weather.Daily) then
-                                renderTemperatureRange (weather.Daily |> List.head)
-                        ]
-                    ]
-                    Html.div [
-                        prop.className "weather-condition-container"
-                        prop.children [
-                            if not (List.isEmpty weather.Current.WeatherConditions) then
-                                renderWeatherCondition weather.Current.WeatherConditions.Head
-                            renderWind weather.Current state.Units
-                        ]
-                    ]
+                    renderTemperature weather.Current units
+                    if not (List.isEmpty weather.Daily) then
+                        renderTemperatureRange (weather.Daily |> List.head)
                 ]
             ]
             Html.div [
-                prop.className "forecasted-weather"
+                prop.className "weather-condition-container"
                 prop.children [
-                    Html.text "FORECAST"
+                    if not (List.isEmpty weather.Current.WeatherConditions) then
+                        renderWeatherCondition weather.Current.WeatherConditions.Head
+                    renderWind weather.Current units
                 ]
             ]
         ]
+    ]
+
+let renderDailyWeather () =
+    Html.div [
+        prop.className "forecasted-weather"
+        prop.children [
+            Html.text "FORECAST"
+        ]
+    ]
+
+let render (state: State) (dispatch: Msg -> unit) =
+    match state.Weather with
+    | Some weather ->
+        Html.div [
+            prop.classes [ "box"; "weather" ]
+            prop.children [
+                renderCurrentWeather weather state.Units
+                renderDailyWeather ()
+            ]
+        ]
     | None ->
-        widget Widget.Double [ "no-weather" ] [
-            Html.span [
-                Html.text "--"
+        Html.div [
+            prop.classes [ "box"; "weather"; "loading-weather" ]
+            prop.children [
+                Html.span [
+                    Html.text "--"
+                ]
             ]
         ]
