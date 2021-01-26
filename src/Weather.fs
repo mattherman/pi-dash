@@ -7,6 +7,7 @@ open Feliz
 open Extensions
 open Configuration
 open System
+open Fable.DateFunctions
 
 type GeographicLocation = {
     Latitude: float;
@@ -35,6 +36,8 @@ type CurrentWeather = {
     FeelsLikeTemperature: float;
     WindSpeed: float;
     WindDirection: int;
+    Sunrise: DateTime;
+    Sunset: DateTime;
 }
 
 type DailyWeather = {
@@ -50,6 +53,10 @@ type Weather = {
     Daily: DailyWeather list;
 }
 
+let unixEpochToTimestamp unix =
+    let epoch = DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+    epoch.AddSeconds unix
+
 let weatherConditionDecoder : Decoder<WeatherCondition> =
     Decode.object (fun get -> {
         Id = get.Required.At [ "id" ] Decode.int
@@ -63,11 +70,9 @@ let currentWeatherDecoder : Decoder<CurrentWeather> =
         FeelsLikeTemperature = get.Required.At [ "feels_like" ] Decode.float
         WindSpeed = get.Required.At [ "wind_speed" ] Decode.float
         WindDirection = get.Required.At [ "wind_deg" ] Decode.int
+        Sunrise = get.Required.At [ "sunrise" ] Decode.float |> unixEpochToTimestamp
+        Sunset = get.Required.At [ "sunset" ] Decode.float |> unixEpochToTimestamp
     })
-
-let unixEpochToTimestamp unix =
-    let epoch = DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-    epoch.AddSeconds unix
 
 let dailyWeatherDecoder : Decoder<DailyWeather> =
     Decode.object (fun get -> {
@@ -270,6 +275,28 @@ let renderWind weather units =
         ]
     ]
 
+type SunEvent = Sunrise | Sunset
+
+let renderSunEvent (date: DateTime) sunEvent =
+    let formattedTime = date.Format "h:mm A"
+    let iconClass =
+        match sunEvent with
+        | Sunrise -> "wi-sunrise"
+        | Sunset -> "wi-sunset"
+    Html.div [
+        prop.classes [ "sun-event" ]
+        prop.children [
+            Html.div [
+                Html.i [
+                    prop.classes [ "sun-event-icon"; "wi"; iconClass ]
+                ]
+            ]
+            Html.div [
+                Html.text formattedTime
+            ]
+        ]
+    ]
+
 let renderCurrentWeather weather units =
     Html.div [
         prop.classes [ "box"; "current-weather" ]
@@ -283,14 +310,6 @@ let renderCurrentWeather weather units =
                             renderTemperature weather.Current.Temperature weather.Current.FeelsLikeTemperature units
                         ]
                     ]
-                    if not (List.isEmpty weather.Daily) then
-                        let forecast = weather.Daily |> List.head
-                        Html.div [
-                            prop.classes [ "current-weather-temperature-range" ]
-                            prop.children [
-                                renderTemperatureRange forecast.HighTemperature forecast.LowTemperature
-                            ]
-                        ]
                 ]
             ]
             Html.div [
@@ -307,6 +326,23 @@ let renderCurrentWeather weather units =
                         prop.classes [ "current-weather-wind" ]
                         prop.children [
                             renderWind weather.Current units
+                        ]
+                    ]
+                ]
+            ]
+            Html.div [
+                prop.classes [ "current-weather-sun-container" ]
+                prop.children [
+                    Html.div [
+                        prop.classes [ "current-weather-sun-event" ]
+                        prop.children [
+                            renderSunEvent weather.Current.Sunrise Sunrise
+                        ]
+                    ]
+                    Html.div [
+                        prop.classes [ "current-weather-sun-event" ]
+                        prop.children [
+                            renderSunEvent weather.Current.Sunset Sunset
                         ]
                     ]
                 ]

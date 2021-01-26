@@ -142,6 +142,29 @@ body {
     flex: 1;
 }
 
+.current-weather-sun-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.current-weather-sun-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1
+}
+
+.sun-event-icon {
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+
+.sun-event {
+    font-size: 20px;
+    text-align: center;
+}
+
 .forecasted-weather {
     display: flex;
     flex-direction: row;
