@@ -1,3 +1,4 @@
+[<RequireQualifiedAccessAttribute>]
 module Weather
 
 open Elmish
@@ -400,7 +401,7 @@ let render (state: State) (dispatch: Msg -> unit) =
             prop.classes [ "weather" ]
             prop.children [
                 renderCurrentWeather weather state.Units
-                renderDailyWeather (weather.Daily |> List.skip 1 |> List.take 5) state.Units
+                renderDailyWeather (weather.Daily |> List.take 5) state.Units
             ]
         ]
     | None ->
