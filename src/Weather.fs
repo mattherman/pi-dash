@@ -190,9 +190,9 @@ let temperatureUnits units =
     | Imperial -> "F"
     | Metric -> "C"
 
-let renderTemperature weather units =
-    let temperatureText = sprintf "%.1f" weather.Temperature
-    let feelsLikeTemperatureText = sprintf "Feels like %.0f°" weather.FeelsLikeTemperature
+let renderTemperature temperature feelsLikeTemperature units =
+    let temperatureText = sprintf "%.1f" temperature
+    let feelsLikeTemperatureText = sprintf "Feels like %.0f°" feelsLikeTemperature
     let unitText = sprintf "°%s" (temperatureUnits units)
     Html.div [
         Html.div [
@@ -280,7 +280,7 @@ let renderCurrentWeather weather units =
                     Html.div [
                         prop.classes [ "current-weather-temperature" ]
                         prop.children [
-                            renderTemperature weather.Current units
+                            renderTemperature weather.Current.Temperature weather.Current.FeelsLikeTemperature units
                         ]
                     ]
                     if not (List.isEmpty weather.Daily) then
@@ -372,7 +372,7 @@ let render (state: State) (dispatch: Msg -> unit) =
             prop.classes [ "box"; "weather"; "loading-weather" ]
             prop.children [
                 Html.span [
-                    Html.text "--"
+                    Html.text "Loading..."
                 ]
             ]
         ]
