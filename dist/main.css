@@ -25,6 +25,7 @@ body {
 
 .time {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
@@ -33,6 +34,10 @@ body {
 .time-period {
     font-size: 50%;
     padding-left: 5px;
+}
+
+.time-formatted-date {
+    font-size: 50%;
 }
 
 .weather {
