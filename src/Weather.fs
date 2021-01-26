@@ -330,9 +330,24 @@ let renderDailyWeatherForecast (weather: DailyWeather) =
         prop.classes [ "forecasted-weather-daily-forecast" ]
         prop.children [
             if not (List.isEmpty weather.WeatherConditions) then
-                renderWeatherCondition (weather.WeatherConditions |> List.head)
-            renderTemperatureRange weather.HighTemperature weather.LowTemperature
-            Html.text (sprintf "%s" dayOfWeek)
+                Html.div [
+                    prop.classes [ "forecasted-weather-daily-forecast-condition" ]
+                    prop.children [
+                        renderWeatherCondition (weather.WeatherConditions |> List.head)
+                    ]
+                ]
+            Html.div [
+                prop.classes [ "forecasted-weather-daily-forecast-temperature-range" ]
+                prop.children [
+                    renderTemperatureRange weather.HighTemperature weather.LowTemperature
+                ]
+            ]
+            Html.div [
+                prop.classes [ "forecasted-weather-daily-forecast-day" ]
+                prop.children [
+                    Html.text (sprintf "%s" dayOfWeek)
+                ]
+            ]
         ]
     ]
 

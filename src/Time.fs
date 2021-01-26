@@ -39,7 +39,7 @@ let render12HourTime (time: DateTime) =
         prop.children [
             Html.text formattedTime
             Html.span [
-                prop.className "time-period"
+                prop.classes [ "time-period" ]
                 prop.children [ Html.text formattedPeriod ]
             ]
         ]

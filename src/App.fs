@@ -41,7 +41,7 @@ let update (msg: Msg) (state: State) =
 
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
-        prop.className "container"
+        prop.classes [ "container" ]
         prop.children [
             Time.render state.Time (TimeMsg >> dispatch)
             Weather.render state.Weather (WeatherMsg >> dispatch)
