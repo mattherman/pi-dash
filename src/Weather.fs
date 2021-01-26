@@ -195,31 +195,28 @@ let renderTemperature weather units =
     let feelsLikeTemperatureText = sprintf "Feels like %.0f°" weather.FeelsLikeTemperature
     let unitText = sprintf "°%s" (temperatureUnits units)
     Html.div [
-        prop.className "temperature"
-        prop.children [
-            Html.div [
-                prop.className "current-temperature"
-                prop.children [
-                    Html.text temperatureText
-                    Html.span [
-                        prop.className "temperature-unit"
-                        prop.children [ Html.text unitText ]
-                    ]
+        Html.div [
+            prop.classes [ "current-temperature" ]
+            prop.children [
+                Html.text temperatureText
+                Html.span [
+                    prop.classes [ "temperature-unit" ]
+                    prop.children [ Html.text unitText ]
                 ]
-                
             ]
-            Html.div [
-                prop.className "feels-like-temperature"
-                prop.children [
-                    Html.text feelsLikeTemperatureText
-                ]
+            
+        ]
+        Html.div [
+            prop.classes [ "feels-like-temperature" ]
+            prop.children [
+                Html.text feelsLikeTemperatureText
             ]
         ]
     ]
 
 let renderTemperatureRange highTemp lowTemp =
     Html.div [
-        prop.className "temperature-range"
+        prop.classes [ "temperature-range" ]
         prop.children [
             Html.div [
                 Html.text (sprintf "%.0f°" highTemp)
@@ -239,7 +236,7 @@ let renderTemperatureRange highTemp lowTemp =
 let renderWeatherCondition (weatherCondition: WeatherCondition) =
     let iconClass = sprintf "wi-owm-%d" weatherCondition.Id
     Html.div [
-        prop.className "weather-condition"
+        prop.classes [ "weather-condition" ]
         prop.children [
             Html.div [
                 Html.i [
@@ -260,7 +257,7 @@ let windSpeedUnits units =
 let renderWind weather units =
     let iconClass = sprintf "from-%d-deg" weather.WindDirection
     Html.div [
-        prop.className "wind"
+        prop.classes [ "wind" ]
         prop.children [
             Html.div [
                 Html.i [
@@ -275,23 +272,43 @@ let renderWind weather units =
 
 let renderCurrentWeather weather units =
     Html.div [
-        prop.className "current-weather"
+        prop.classes [ "box"; "current-weather" ]
         prop.children [
             Html.div [
-                prop.className "temperature-container"
+                prop.classes [ "current-weather-temperature-container" ]
                 prop.children [
-                    renderTemperature weather.Current units
+                    Html.div [
+                        prop.classes [ "current-weather-temperature" ]
+                        prop.children [
+                            renderTemperature weather.Current units
+                        ]
+                    ]
                     if not (List.isEmpty weather.Daily) then
                         let forecast = weather.Daily |> List.head
-                        renderTemperatureRange forecast.HighTemperature forecast.LowTemperature
+                        Html.div [
+                            prop.classes [ "current-weather-temperature-range" ]
+                            prop.children [
+                                renderTemperatureRange forecast.HighTemperature forecast.LowTemperature
+                            ]
+                        ]
                 ]
             ]
             Html.div [
-                prop.className "weather-condition-container"
+                prop.classes [ "current-weather-condition-container" ]
                 prop.children [
                     if not (List.isEmpty weather.Current.WeatherConditions) then
-                        renderWeatherCondition weather.Current.WeatherConditions.Head
-                    renderWind weather.Current units
+                        Html.div [
+                            prop.classes [ "current-weather-condition" ]
+                            prop.children [
+                                renderWeatherCondition weather.Current.WeatherConditions.Head
+                            ]
+                        ]
+                    Html.div [
+                        prop.classes [ "current-weather-wind" ]
+                        prop.children [
+                            renderWind weather.Current units
+                        ]
+                    ]
                 ]
             ]
         ]
@@ -310,7 +327,7 @@ let renderDailyWeatherForecast (weather: DailyWeather) =
         | _ -> ""
 
     Html.div [
-        prop.className "daily-forecast"
+        prop.classes [ "forecasted-weather-daily-forecast" ]
         prop.children [
             if not (List.isEmpty weather.WeatherConditions) then
                 renderWeatherCondition (weather.WeatherConditions |> List.head)
@@ -321,7 +338,7 @@ let renderDailyWeatherForecast (weather: DailyWeather) =
 
 let renderDailyWeather (dailyWeather: DailyWeather list) (units: MeasurementSystem) =
     Html.div [
-        prop.className "forecasted-weather"
+        prop.classes [ "box"; "forecasted-weather" ]
         prop.children (dailyWeather |> List.map renderDailyWeatherForecast)
     ]
 
@@ -329,7 +346,7 @@ let render (state: State) (dispatch: Msg -> unit) =
     match state.Weather with
     | Some weather ->
         Html.div [
-            prop.classes [ "box"; "weather" ]
+            prop.classes [ "weather" ]
             prop.children [
                 renderCurrentWeather weather state.Units
                 renderDailyWeather (weather.Daily |> List.skip 1 |> List.take 5) state.Units
