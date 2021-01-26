@@ -80,9 +80,11 @@ body {
 .temperature-range {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     font-size: 35px;
+}
+
+.temperature-range > :first-child {
+    margin-right: 15px;
 }
 
 .current-weather-temperature-range {
