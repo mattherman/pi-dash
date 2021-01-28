@@ -20060,8 +20060,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(15);
 /* harmony import */ var _fable_Fable_Elmish_3_0_0_cmd_fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(35);
 /* harmony import */ var _fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24);
-/* harmony import */ var _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(181);
-/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7);
+/* harmony import */ var _fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(17);
+/* harmony import */ var _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(181);
+/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7);
+
 
 
 
@@ -20108,13 +20110,13 @@ function update(msg, state) {
   }
 }
 function render(state$$1, dispatch) {
-  var elems;
-  const xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_5__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_6__["mkAttr"])("className", "container"), (elems = [Object(_Time_fs__WEBPACK_IMPORTED_MODULE_1__["render"])(state$$1.Time, function ($arg$$1) {
+  var names, elems;
+  const xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_5__["ofArray"])([(names = ["container"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_7__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_6__["join"])(" ", names))), (elems = [Object(_Time_fs__WEBPACK_IMPORTED_MODULE_1__["render"])(state$$1.Time, function ($arg$$1) {
     dispatch((new Msg(0, "TimeMsg", $arg$$1)));
   }), Object(_Weather_fs__WEBPACK_IMPORTED_MODULE_2__["render"])(state$$1.Weather, function ($arg$$2) {
     dispatch((new Msg(1, "WeatherMsg", $arg$$2)));
-  })], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_6__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_6__["reactApi"].Children.toArray(elems)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_6__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_7__["createObj"])(xs, 0));
+  })], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_7__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_7__["reactApi"].Children.toArray(elems)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_7__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_8__["createObj"])(xs, 0));
 }
 
 /***/ }),
@@ -20123,7 +20125,6 @@ function render(state$$1, dispatch) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "now", function() { return now; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "State", function() { return State; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "State$reflection", function() { return State$reflection; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Msg", function() { return Msg; });
@@ -20132,19 +20133,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "update", function() { return update; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render12HourTime", function() { return render12HourTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render24HourTime", function() { return render24HourTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderDate", function() { return renderDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony import */ var _fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(18);
-/* harmony import */ var _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
-/* harmony import */ var _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
+/* harmony import */ var _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
+/* harmony import */ var _fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(18);
 /* harmony import */ var _fable_Fable_Elmish_3_0_0_cmd_fs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35);
 /* harmony import */ var _fable_fable_library_2_4_16_Async_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3);
 /* harmony import */ var _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4);
 /* harmony import */ var _Extensions_fs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(36);
 /* harmony import */ var _fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(37);
-/* harmony import */ var _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(181);
-/* harmony import */ var _fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(24);
-/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7);
-/* harmony import */ var _fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(17);
+/* harmony import */ var _fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(17);
+/* harmony import */ var _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(181);
+/* harmony import */ var _fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(24);
+/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7);
 /* harmony import */ var _fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(8);
 
 
@@ -20159,28 +20161,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function now(arg00) {
-  return Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_0__["fromTicks"])(arg00);
-}
-const State = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["declare"])(function Time_State(arg1, arg2) {
-  this.CurrentTime = arg1;
+const State = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Time_State(arg1, arg2) {
+  this.Now = arg1;
   this.Display24HourTime = arg2;
-}, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["Record"]);
+}, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Record"]);
 function State$reflection() {
-  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["record"])("Time.State", [], State, () => [["CurrentTime", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["type"])("System.DateTime")], ["Display24HourTime", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["bool"]]]);
+  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Time.State", [], State, () => [["Now", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["type"])("System.DateTime")], ["Display24HourTime", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["bool"]]]);
 }
-const Msg = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["declare"])(function Time_Msg(tag, name, ...fields) {
-  _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["Union"].call(this, tag, name, ...fields);
-}, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["Union"]);
+const Msg = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Time_Msg(tag, name, ...fields) {
+  _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Union"].call(this, tag, name, ...fields);
+}, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Union"]);
 function Msg$reflection() {
-  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["union"])("Time.Msg", [], Msg, () => ["Tick"]);
+  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["union"])("Time.Msg", [], Msg, () => ["Tick"]);
 }
 function init(config) {
   var msg;
-  return [new State(Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_0__["now"])(), config.Display24HourTime), (msg = new Msg(0, "Tick"), Object(_fable_Fable_Elmish_3_0_0_cmd_fs__WEBPACK_IMPORTED_MODULE_3__["Cmd$002EOfFunc$$$result"])(msg))];
+  return [new State(Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_2__["now"])(), config.Display24HourTime), (msg = new Msg(0, "Tick"), Object(_fable_Fable_Elmish_3_0_0_cmd_fs__WEBPACK_IMPORTED_MODULE_3__["Cmd$002EOfFunc$$$result"])(msg))];
 }
 function update(msg$$1, state) {
-  const nextState = new State(Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_0__["now"])(), state.Display24HourTime);
+  const nextState = new State(Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_2__["now"])(), state.Display24HourTime);
   let step;
   step = _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_5__["singleton"].Delay(function () {
     return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_5__["singleton"].Bind(Object(_fable_fable_library_2_4_16_Async_js__WEBPACK_IMPORTED_MODULE_4__["sleep"])(1000), function () {
@@ -20189,26 +20188,34 @@ function update(msg$$1, state) {
   });
   return [nextState, Object(_Extensions_fs__WEBPACK_IMPORTED_MODULE_6__["fromAsync"])(step)];
 }
-function render12HourTime(time) {
-  var elems$$1, xs, elems;
-  const formattedTime = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(time, "h:mm");
-  const formattedPeriod = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(time, "A");
-  const xs$$1 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]((elems$$1 = [formattedTime, (xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_9__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["mkAttr"])("className", "time-period"), (elems = [formattedPeriod], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactApi"].Children.toArray(elems)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactElement"])("span", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_10__["createObj"])(xs, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactApi"].Children.toArray(elems$$1))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactElement"])("span", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_10__["createObj"])(xs$$1, 0));
+function render12HourTime(date) {
+  var elems$$1, xs, names, elems;
+  const formattedTime = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(date, "h:mm");
+  const formattedPeriod = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(date, "A");
+  const xs$$1 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((elems$$1 = [formattedTime, (xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_10__["ofArray"])([(names = ["time-period"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names))), (elems = [formattedPeriod], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactApi"].Children.toArray(elems)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactElement"])("span", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_11__["createObj"])(xs, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactApi"].Children.toArray(elems$$1))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]());
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_11__["createObj"])(xs$$1, 0));
 }
-function render24HourTime(time$$1) {
-  const formattedTime$$1 = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(time$$1, "H:mm");
-  const children = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](formattedTime$$1, new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactElement"])("span", {
-    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactApi"].Children.toArray(children)
+function render24HourTime(date$$3) {
+  const formattedTime$$1 = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(date$$3, "H:mm");
+  const children = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"](formattedTime$$1, new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]());
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactApi"].Children.toArray(children)
   });
 }
+function renderDate(date$$5) {
+  var names$$1, elems$$2;
+  const formattedDate = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_7__["ExternalDateFns$$$formatWithStr"])(date$$5, "MMMM do, YYYY");
+  const xs$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_10__["ofArray"])([(names$$1 = ["time-formatted-date"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$1))), (elems$$2 = [formattedDate], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactApi"].Children.toArray(elems$$2)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_11__["createObj"])(xs$$2, 0));
+}
 function render(state$$1, dispatch) {
-  var names, elems$$2;
-  const xs$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_9__["ofArray"])([(names = ["box", "time"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_11__["join"])(" ", names))), (elems$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_9__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["delay"])(function () {
-    return state$$1.Display24HourTime ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["singleton"])(render24HourTime(state$$1.CurrentTime)) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["singleton"])(render12HourTime(state$$1.CurrentTime));
-  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactApi"].Children.toArray(elems$$2)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_8__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_10__["createObj"])(xs$$2, 0));
+  var names$$2, elems$$3;
+  const xs$$3 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_10__["ofArray"])([(names$$2 = ["box", "time"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$2))), (elems$$3 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_10__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["delay"])(function () {
+    return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["append"])(state$$1.Display24HourTime ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["singleton"])(render24HourTime(state$$1.Now)) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["singleton"])(render12HourTime(state$$1.Now)), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["delay"])(function () {
+      return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_12__["singleton"])(renderDate(state$$1.Now));
+    }));
+  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactApi"].Children.toArray(elems$$3)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_9__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_11__["createObj"])(xs$$3, 0));
 }
 
 /***/ }),
@@ -29340,9 +29347,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DailyWeather$reflection", function() { return DailyWeather$reflection; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Weather", function() { return Weather; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Weather$reflection", function() { return Weather$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unixEpochToTimestamp", function() { return unixEpochToTimestamp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "weatherConditionDecoder", function() { return weatherConditionDecoder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currentWeatherDecoder", function() { return currentWeatherDecoder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unixEpochToTimestamp", function() { return unixEpochToTimestamp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dailyWeatherDecoder", function() { return dailyWeatherDecoder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "weatherDecoder", function() { return weatherDecoder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "State", function() { return State; });
@@ -29361,15 +29368,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderWeatherCondition", function() { return renderWeatherCondition; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "windSpeedUnits", function() { return windSpeedUnits; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderWind", function() { return renderWind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SunEvent", function() { return SunEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SunEvent$reflection", function() { return SunEvent$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSunEvent", function() { return renderSunEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderCurrentWeather", function() { return renderCurrentWeather; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderDailyWeatherForecast", function() { return renderDailyWeatherForecast; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderDailyWeather", function() { return renderDailyWeather; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony import */ var _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
 /* harmony import */ var _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
 /* harmony import */ var _fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(24);
 /* harmony import */ var _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(26);
-/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
-/* harmony import */ var _fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(18);
+/* harmony import */ var _fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18);
+/* harmony import */ var _fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7);
 /* harmony import */ var _fable_fable_library_2_4_16_Option_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5);
 /* harmony import */ var _fable_Fable_Elmish_3_0_0_cmd_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(35);
 /* harmony import */ var _fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(17);
@@ -29378,7 +29389,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Extensions_fs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(36);
 /* harmony import */ var _fable_fable_library_2_4_16_Async_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(3);
 /* harmony import */ var _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(181);
-/* harmony import */ var _fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(8);
+/* harmony import */ var _fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(37);
+/* harmony import */ var _fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(8);
+
 
 
 
@@ -29422,15 +29435,17 @@ const WeatherCondition = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IM
 function WeatherCondition$reflection() {
   return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Weather.WeatherCondition", [], WeatherCondition, () => [["Id", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["int32"]], ["Description", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]]]);
 }
-const CurrentWeather = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Weather_CurrentWeather(arg1, arg2, arg3, arg4, arg5) {
+const CurrentWeather = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Weather_CurrentWeather(arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
   this.WeatherConditions = arg1;
   this.Temperature = arg2;
   this.FeelsLikeTemperature = arg3;
   this.WindSpeed = arg4;
   this.WindDirection = arg5 | 0;
+  this.Sunrise = arg6;
+  this.Sunset = arg7;
 }, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Record"]);
 function CurrentWeather$reflection() {
-  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Weather.CurrentWeather", [], CurrentWeather, () => [["WeatherConditions", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["list"])(WeatherCondition$reflection())], ["Temperature", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["FeelsLikeTemperature", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["WindSpeed", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["WindDirection", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["int32"]]]);
+  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Weather.CurrentWeather", [], CurrentWeather, () => [["WeatherConditions", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["list"])(WeatherCondition$reflection())], ["Temperature", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["FeelsLikeTemperature", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["WindSpeed", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["float64"]], ["WindDirection", _fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["int32"]], ["Sunrise", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["type"])("System.DateTime")], ["Sunset", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["type"])("System.DateTime")]]);
 }
 const DailyWeather = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Weather_DailyWeather(arg1, arg2, arg3, arg4, arg5) {
   this.Date = arg1;
@@ -29449,46 +29464,46 @@ const Weather = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MO
 function Weather$reflection() {
   return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Weather.Weather", [], Weather, () => [["Current", CurrentWeather$reflection()], ["Daily", Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["list"])(DailyWeather$reflection())]]);
 }
+function unixEpochToTimestamp(unix) {
+  const epoch = Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_4__["create"])(1970, 1, 1, 0, 0, 0, 0, 1);
+  return Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_4__["addSeconds"])(epoch, unix);
+}
 function weatherConditionDecoder(path$$4) {
   return function (v$$1) {
     return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["object"])(function builder$$1(get$$1) {
       var arg00$$2, objectArg$$2, arg00$$3, objectArg$$3;
-      return new WeatherCondition((arg00$$2 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("id", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$2 = get$$1.Required, objectArg$$2.At(arg00$$2, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["int$"])))), (arg00$$3 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("main", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$3 = get$$1.Required, objectArg$$3.At(arg00$$3, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["string"]))));
+      return new WeatherCondition((arg00$$2 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("id", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$2 = get$$1.Required, objectArg$$2.At(arg00$$2, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["int$"])))), (arg00$$3 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("main", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$3 = get$$1.Required, objectArg$$3.At(arg00$$3, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["string"]))));
     }, path$$4, v$$1);
   };
 }
-function currentWeatherDecoder(path$$9) {
+function currentWeatherDecoder(path$$11) {
   return function (v$$2) {
     return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["object"])(function builder$$2(get$$2) {
-      var arg00$$4, objectArg$$4, arg00$$5, objectArg$$5, arg00$$6, objectArg$$6, arg00$$7, objectArg$$7, arg00$$8, objectArg$$8;
+      var arg00$$4, objectArg$$4, arg00$$5, objectArg$$5, arg00$$6, objectArg$$6, arg00$$7, objectArg$$7, arg00$$8, objectArg$$8, unix$$1, arg00$$9, objectArg$$9, unix$$2, arg00$$10, objectArg$$10;
       return new CurrentWeather((arg00$$4 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("weather", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$4 = get$$2.Required, objectArg$$4.At(arg00$$4, function (path$$5, value$$3) {
-        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, weatherConditionDecoder), path$$5, value$$3);
-      }))), (arg00$$5 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("temp", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$5 = get$$2.Required, objectArg$$5.At(arg00$$5, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$6 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("feels_like", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$6 = get$$2.Required, objectArg$$6.At(arg00$$6, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$7 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("wind_speed", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$7 = get$$2.Required, objectArg$$7.At(arg00$$7, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$8 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("wind_deg", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$8 = get$$2.Required, objectArg$$8.At(arg00$$8, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["int$"])))));
-    }, path$$9, v$$2);
+        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, weatherConditionDecoder), path$$5, value$$3);
+      }))), (arg00$$5 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("temp", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$5 = get$$2.Required, objectArg$$5.At(arg00$$5, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$6 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("feels_like", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$6 = get$$2.Required, objectArg$$6.At(arg00$$6, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$7 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("wind_speed", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$7 = get$$2.Required, objectArg$$7.At(arg00$$7, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$8 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("wind_deg", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$8 = get$$2.Required, objectArg$$8.At(arg00$$8, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["int$"])))), (unix$$1 = (arg00$$9 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("sunrise", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$9 = get$$2.Required, objectArg$$9.At(arg00$$9, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (unixEpochToTimestamp(unix$$1))), (unix$$2 = (arg00$$10 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("sunset", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$10 = get$$2.Required, objectArg$$10.At(arg00$$10, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (unixEpochToTimestamp(unix$$2))));
+    }, path$$11, v$$2);
   };
 }
-function unixEpochToTimestamp(unix) {
-  const epoch = Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_5__["create"])(1970, 1, 1, 0, 0, 0, 0, 1);
-  return Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_5__["addMilliseconds"])(epoch, unix);
-}
-function dailyWeatherDecoder(path$$15) {
+function dailyWeatherDecoder(path$$17) {
   return function (v$$3) {
     return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["object"])(function builder$$3(get$$3) {
-      var unix$$1, arg00$$9, objectArg$$9, arg00$$10, objectArg$$10, arg00$$11, objectArg$$11, arg00$$12, objectArg$$12, arg00$$13, objectArg$$13;
-      return new DailyWeather((unix$$1 = (arg00$$9 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("dt", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$9 = get$$3.Required, objectArg$$9.At(arg00$$9, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (unixEpochToTimestamp(unix$$1))), (arg00$$10 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])(["temp", "max"]), (objectArg$$10 = get$$3.Required, objectArg$$10.At(arg00$$10, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$11 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])(["temp", "min"]), (objectArg$$11 = get$$3.Required, objectArg$$11.At(arg00$$11, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$12 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("weather", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$12 = get$$3.Required, objectArg$$12.At(arg00$$12, function (path$$13, value$$10) {
-        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, weatherConditionDecoder), path$$13, value$$10);
-      }))), (arg00$$13 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("rain", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$13 = get$$3.Optional, objectArg$$13.At(arg00$$13, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))));
-    }, path$$15, v$$3);
+      var unix$$3, arg00$$11, objectArg$$11, arg00$$12, objectArg$$12, arg00$$13, objectArg$$13, arg00$$14, objectArg$$14, arg00$$15, objectArg$$15;
+      return new DailyWeather((unix$$3 = (arg00$$11 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("dt", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$11 = get$$3.Required, objectArg$$11.At(arg00$$11, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (unixEpochToTimestamp(unix$$3))), (arg00$$12 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])(["temp", "max"]), (objectArg$$12 = get$$3.Required, objectArg$$12.At(arg00$$12, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$13 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])(["temp", "min"]), (objectArg$$13 = get$$3.Required, objectArg$$13.At(arg00$$13, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))), (arg00$$14 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("weather", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$14 = get$$3.Required, objectArg$$14.At(arg00$$14, function (path$$15, value$$12) {
+        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, weatherConditionDecoder), path$$15, value$$12);
+      }))), (arg00$$15 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("rain", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$15 = get$$3.Optional, objectArg$$15.At(arg00$$15, _fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["float$"]))));
+    }, path$$17, v$$3);
   };
 }
-function weatherDecoder(path$$17) {
+function weatherDecoder(path$$19) {
   return function (v$$4) {
     return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["object"])(function builder$$4(get$$4) {
-      var arg00$$14, objectArg$$14, arg00$$15, objectArg$$15;
-      return new Weather((arg00$$14 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("current", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$14 = get$$4.Required, objectArg$$14.At(arg00$$14, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, currentWeatherDecoder)))), (arg00$$15 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("daily", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$15 = get$$4.Required, objectArg$$15.At(arg00$$15, function (path$$16, value$$12) {
-        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, dailyWeatherDecoder), path$$16, value$$12);
+      var arg00$$16, objectArg$$16, arg00$$17, objectArg$$17;
+      return new Weather((arg00$$16 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("current", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$16 = get$$4.Required, objectArg$$16.At(arg00$$16, Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, currentWeatherDecoder)))), (arg00$$17 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("daily", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), (objectArg$$17 = get$$4.Required, objectArg$$17.At(arg00$$17, function (path$$18, value$$14) {
+        return Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["list"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, dailyWeatherDecoder), path$$18, value$$14);
       }))));
-    }, path$$17, v$$4);
+    }, path$$19, v$$4);
   };
 }
 const State = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Weather_State(arg1, arg2, arg3, arg4, arg5, arg6) {
@@ -29560,7 +29575,7 @@ function loadLocation(apiKey, zipCode) {
     endpoint = clo2(apiKey);
     return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Bind(Object(_fable_Fable_SimpleHttp_3_0_0_Http_fs__WEBPACK_IMPORTED_MODULE_9__["Http$$$get"])(endpoint), function (_arg1) {
       if (_arg1[0] === 200) {
-        const parsedResult = Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["fromString"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, geographicLocationDecoder), _arg1[1]);
+        const parsedResult = Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["fromString"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, geographicLocationDecoder), _arg1[1]);
         return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Return(new Msg(1, "LoadedLocation", parsedResult));
       } else {
         return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Return(new Msg(1, "LoadedLocation", new _fable_fable_library_2_4_16_Option_js__WEBPACK_IMPORTED_MODULE_6__["Result"](1, "Error", _arg1[1])));
@@ -29580,7 +29595,7 @@ function loadWeather(apiKey$$1, location, units$$2) {
     endpoint$$1 = clo5(unitsParameter);
     return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Bind(Object(_fable_Fable_SimpleHttp_3_0_0_Http_fs__WEBPACK_IMPORTED_MODULE_9__["Http$$$get"])(endpoint$$1), function (_arg1$$1) {
       if (_arg1$$1[0] === 200) {
-        const parsedResult$$1 = Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["fromString"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["uncurry"])(2, weatherDecoder), _arg1$$1[1]);
+        const parsedResult$$1 = Object(_fable_Thoth_Json_4_1_0_Decode_fs__WEBPACK_IMPORTED_MODULE_3__["fromString"])(Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["uncurry"])(2, weatherDecoder), _arg1$$1[1]);
         return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Return(new Msg(3, "LoadedWeather", parsedResult$$1));
       } else {
         return _fable_fable_library_2_4_16_AsyncBuilder_js__WEBPACK_IMPORTED_MODULE_10__["singleton"].Return(new Msg(3, "LoadedWeather", new _fable_fable_library_2_4_16_Option_js__WEBPACK_IMPORTED_MODULE_6__["Result"](1, "Error", _arg1$$1[1])));
@@ -29654,41 +29669,43 @@ function temperatureUnits(units$$3) {
       }
   }
 }
-function renderTemperature(weather$$1, units$$4) {
-  var elems$$3, xs$$1, elems$$1, xs, elems, xs$$2, elems$$2;
+function renderTemperature(temperature, feelsLikeTemperature, units$$4) {
+  var xs$$1, names, elems$$1, xs, names$$1, elems, xs$$2, names$$2, elems$$2;
   let temperatureText;
   const clo1$$4 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.1f"));
-  temperatureText = clo1$$4(weather$$1.Temperature);
+  temperatureText = clo1$$4(temperature);
   let feelsLikeTemperatureText;
   const clo1$$5 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("Feels like %.0f°"));
-  feelsLikeTemperatureText = clo1$$5(weather$$1.FeelsLikeTemperature);
+  feelsLikeTemperatureText = clo1$$5(feelsLikeTemperature);
   let unitText;
-  const arg10$$22 = temperatureUnits(units$$4);
+  const arg10$$24 = temperatureUnits(units$$4);
   const clo1$$6 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("°%s"));
-  unitText = clo1$$6(arg10$$22);
-  const xs$$3 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "temperature"), (elems$$3 = [(xs$$1 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "current-temperature"), (elems$$1 = [temperatureText, (xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "temperature-unit"), (elems = [unitText], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("span", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$1)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$1, 0))), (xs$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "feels-like-temperature"), (elems$$2 = [feelsLikeTemperatureText], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$2)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$2, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$3)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$3, 0));
-}
-function renderTemperatureRange(weather$$2) {
-  var elems$$4, children, value$$21, clo1$$7, xs$$4, names, children$$1, value$$22, clo1$$8, xs$$5, names$$1;
-  const xs$$6 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "temperature-range"), (elems$$4 = [(children = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(value$$21 = (clo1$$7 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f°")), clo1$$7(weather$$2.HighTemperature)), value$$21), (xs$$4 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names = ["wi", "wi-direction-up"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$4, 0)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+  unitText = clo1$$6(arg10$$24);
+  const children = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(xs$$1 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names = ["current-temperature"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names))), (elems$$1 = [temperatureText, (xs = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$1 = ["temperature-unit"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$1))), (elems = [unitText], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("span", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$1)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$1, 0))), (xs$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$2 = ["feels-like-temperature"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$2))), (elems$$2 = [feelsLikeTemperatureText], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$2)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$2, 0)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
     children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children)
-  })), (children$$1 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(value$$22 = (clo1$$8 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f°")), clo1$$8(weather$$2.LowTemperature)), value$$22), (xs$$5 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$1 = ["wi", "wi-direction-down"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$1))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$5, 0)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+  });
+}
+function renderTemperatureRange(highTemp, lowTemp) {
+  var names$$3, elems$$3, children$$1, value$$18, clo1$$7, xs$$3, names$$4, children$$2, value$$19, clo1$$8, xs$$4, names$$5;
+  const xs$$5 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$3 = ["temperature-range"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$3))), (elems$$3 = [(children$$1 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(value$$18 = (clo1$$7 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f°")), clo1$$7(highTemp)), value$$18), (xs$$3 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$4 = ["wi", "wi-direction-up"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$4))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$3, 0)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
     children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$1)
-  }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$4)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$6, 0));
+  })), (children$$2 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(value$$19 = (clo1$$8 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f°")), clo1$$8(lowTemp)), value$$19), (xs$$4 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$5 = ["wi", "wi-direction-down"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$5))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$4, 0)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$2)
+  }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$3)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$5, 0));
 }
 function renderWeatherCondition(weatherCondition) {
-  var elems$$5, children$$2, xs$$7, names$$2, children$$3;
+  var names$$6, elems$$4, children$$3, xs$$6, names$$7, children$$4;
   let iconClass;
   const clo1$$9 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("wi-owm-%d"));
   iconClass = clo1$$9(weatherCondition.Id);
-  const xs$$8 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "weather-condition"), (elems$$5 = [(children$$2 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((xs$$7 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$2 = ["weather-condition-icon", "wi", iconClass], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$2))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$7, 0))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
-    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$2)
-  })), (children$$3 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"](weatherCondition.Description, new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+  const xs$$7 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$6 = ["weather-condition"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$6))), (elems$$4 = [(children$$3 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((xs$$6 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$7 = ["weather-condition-icon", "wi", iconClass], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$7))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$6, 0))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
     children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$3)
-  }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$5)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$8, 0));
+  })), (children$$4 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"](weatherCondition.Description, new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$4)
+  }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$4)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$7, 0));
 }
 function windSpeedUnits(units$$5) {
   switch (units$$5.tag) {
@@ -29708,48 +29725,129 @@ function windSpeedUnits(units$$5) {
       }
   }
 }
-function renderWind(weather$$3, units$$6) {
-  var elems$$6, children$$4, xs$$9, names$$3, children$$5, value$$26, arg20$$2, clo1$$11, clo2$$2;
+function renderWind(weather$$1, units$$6) {
+  var names$$8, elems$$5, children$$5, xs$$8, names$$9, children$$6, value$$21, arg20$$2, clo1$$11, clo2$$2;
   let iconClass$$1;
   const clo1$$10 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("from-%d-deg"));
-  iconClass$$1 = clo1$$10(weather$$3.WindDirection);
-  const xs$$10 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "wind"), (elems$$6 = [(children$$4 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((xs$$9 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$3 = ["wind-icon", "wi", "wi-wind", iconClass$$1], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$3))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$9, 0))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
-    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$4)
-  })), (children$$5 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((value$$26 = (arg20$$2 = windSpeedUnits(units$$6), (clo1$$11 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f %s")), clo2$$2 = clo1$$11(weather$$3.WindSpeed), clo2$$2(arg20$$2))), value$$26), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+  iconClass$$1 = clo1$$10(weather$$1.WindDirection);
+  const xs$$9 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$8 = ["wind"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$8))), (elems$$5 = [(children$$5 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((xs$$8 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$9 = ["wind-icon", "wi", "wi-wind", iconClass$$1], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$9))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$8, 0))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
     children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$5)
+  })), (children$$6 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((value$$21 = (arg20$$2 = windSpeedUnits(units$$6), (clo1$$11 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%.0f %s")), clo2$$2 = clo1$$11(weather$$1.WindSpeed), clo2$$2(arg20$$2))), value$$21), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$6)
+  }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$5)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$9, 0));
+}
+const SunEvent = Object(_fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Weather_SunEvent(tag, name, ...fields) {
+  _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Union"].call(this, tag, name, ...fields);
+}, _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["Union"]);
+function SunEvent$reflection() {
+  return Object(_fable_fable_library_2_4_16_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["union"])("Weather.SunEvent", [], SunEvent, () => ["Sunrise", "Sunset"]);
+}
+function renderSunEvent(date, sunEvent) {
+  var names$$10, elems$$6, children$$7, xs$$10, names$$11, children$$8;
+  const formattedTime = Object(_fable_Fable_DateFunctions_2_6_0_DateFns_fs__WEBPACK_IMPORTED_MODULE_14__["ExternalDateFns$$$formatWithStr"])(date, "h:mm A");
+  const iconClass$$2 = sunEvent.tag === 1 ? "wi-sunset" : "wi-sunrise";
+  const xs$$11 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$10 = ["sun-event"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$10))), (elems$$6 = [(children$$7 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((xs$$10 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]((names$$11 = ["sun-event-icon", "wi", iconClass$$2], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$11))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("i", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$10, 0))), new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$7)
+  })), (children$$8 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"](formattedTime, new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", {
+    children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$8)
   }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$6)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$10, 0));
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$11, 0));
 }
-function renderCurrentWeather(weather$$4, units$$7) {
-  var elems$$9, xs$$11, elems$$7, xs$$12, elems$$8;
-  const xs$$13 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "current-weather"), (elems$$9 = [(xs$$11 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "temperature-container"), (elems$$7 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["delay"])(function () {
-    return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["append"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["singleton"])(renderTemperature(weather$$4.Current, units$$7)), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["delay"])(function () {
-      return !(weather$$4.Daily.tail == null) ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["singleton"])(renderTemperatureRange((Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["head"])(weather$$4.Daily)))) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["empty"])();
+function renderCurrentWeather(weather$$2, units$$7) {
+  var names$$12, elems$$15, xs$$13, names$$13, elems$$8, xs$$12, names$$14, elems$$7, xs$$16, names$$15, elems$$11, xs$$19, names$$18, elems$$14, xs$$17, names$$19, elems$$12, xs$$18, names$$20, elems$$13;
+  const xs$$20 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$12 = ["box", "current-weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$12))), (elems$$15 = [(xs$$13 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$13 = ["current-weather-temperature-container"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$13))), (elems$$8 = [(xs$$12 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$14 = ["current-weather-temperature"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$14))), (elems$$7 = [renderTemperature(weather$$2.Current.Temperature, weather$$2.Current.FeelsLikeTemperature, units$$7)], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$7)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$12, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$8)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$13, 0))), (xs$$16 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$15 = ["current-weather-condition-container"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$15))), (elems$$11 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["delay"])(function () {
+    var xs$$14, names$$16, elems$$9;
+    return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["append"])(!(weather$$2.Current.WeatherConditions.tail == null) ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["singleton"])((xs$$14 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$16 = ["current-weather-condition"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$16))), (elems$$9 = [renderWeatherCondition(Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["head"])(weather$$2.Current.WeatherConditions))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$9)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$14, 0)))) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["empty"])(), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["delay"])(function () {
+      var xs$$15, names$$17, elems$$10;
+      return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["singleton"])((xs$$15 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$17 = ["current-weather-wind"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$17))), (elems$$10 = [renderWind(weather$$2.Current, units$$7)], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$10)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$15, 0))));
     }));
-  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$7)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$11, 0))), (xs$$12 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "weather-condition-container"), (elems$$8 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["delay"])(function () {
-    return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["append"])(!(weather$$4.Current.WeatherConditions.tail == null) ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["singleton"])(renderWeatherCondition(Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["head"])(weather$$4.Current.WeatherConditions))) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["empty"])(), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["delay"])(function () {
-      return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_14__["singleton"])(renderWind(weather$$4.Current, units$$7));
-    }));
-  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$8)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$12, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$9)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$13, 0));
+  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$11)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$16, 0))), (xs$$19 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$18 = ["current-weather-sun-container"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$18))), (elems$$14 = [(xs$$17 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$19 = ["current-weather-sun-event"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$19))), (elems$$12 = [renderSunEvent(weather$$2.Current.Sunrise, new SunEvent(0, "Sunrise"))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$12)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$17, 0))), (xs$$18 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$20 = ["current-weather-sun-event"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$20))), (elems$$13 = [renderSunEvent(weather$$2.Current.Sunset, new SunEvent(1, "Sunset"))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$13)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$18, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$14)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$19, 0)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$15)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$20, 0));
 }
-function renderDailyWeather() {
-  var elems$$10;
-  const xs$$14 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", "forecasted-weather"), (elems$$10 = ["FORECAST"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$10)))]);
-  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$14, 0));
+function renderDailyWeatherForecast(weather$$3) {
+  var names$$21, elems$$19;
+  let dayOfWeek;
+  const matchValue$$1 = Object(_fable_fable_library_2_4_16_Date_js__WEBPACK_IMPORTED_MODULE_4__["dayOfWeek"])(weather$$3.Date) | 0;
+
+  switch (matchValue$$1) {
+    case 0:
+      {
+        dayOfWeek = "SUN";
+        break;
+      }
+
+    case 1:
+      {
+        dayOfWeek = "MON";
+        break;
+      }
+
+    case 2:
+      {
+        dayOfWeek = "TUE";
+        break;
+      }
+
+    case 3:
+      {
+        dayOfWeek = "WED";
+        break;
+      }
+
+    case 4:
+      {
+        dayOfWeek = "THU";
+        break;
+      }
+
+    case 5:
+      {
+        dayOfWeek = "FRI";
+        break;
+      }
+
+    case 6:
+      {
+        dayOfWeek = "SAT";
+        break;
+      }
+
+    default:
+      {
+        dayOfWeek = "";
+      }
+  }
+
+  const xs$$24 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$21 = ["forecasted-weather-daily-forecast"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$21))), (elems$$19 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofSeq"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["delay"])(function () {
+    var xs$$21, names$$22, elems$$16;
+    return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["append"])(!(weather$$3.WeatherConditions.tail == null) ? Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["singleton"])((xs$$21 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$22 = ["forecasted-weather-daily-forecast-condition"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$22))), (elems$$16 = [renderWeatherCondition((Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["head"])(weather$$3.WeatherConditions)))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$16)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$21, 0)))) : Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["empty"])(), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["delay"])(function () {
+      var xs$$22, names$$23, elems$$17;
+      return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["append"])(Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["singleton"])((xs$$22 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$23 = ["forecasted-weather-daily-forecast-temperature-range"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$23))), (elems$$17 = [renderTemperatureRange(weather$$3.HighTemperature, weather$$3.LowTemperature)], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$17)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$22, 0)))), Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["delay"])(function () {
+        var xs$$23, names$$24, elems$$18, value$$23, clo1$$12;
+        return Object(_fable_fable_library_2_4_16_Seq_js__WEBPACK_IMPORTED_MODULE_15__["singleton"])((xs$$23 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$24 = ["forecasted-weather-daily-forecast-day"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$24))), (elems$$18 = [(value$$23 = (clo1$$12 = Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["toText"])(Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["printf"])("%s")), clo1$$12(dayOfWeek)), value$$23)], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$18)))]), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$23, 0))));
+      }));
+    }));
+  })), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$19)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$24, 0));
+}
+function renderDailyWeather(dailyWeather, units$$8) {
+  var names$$25, elems$$20;
+  const xs$$25 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$25 = ["box", "forecasted-weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$25))), (elems$$20 = (Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["map"])(renderDailyWeatherForecast, dailyWeather)), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$20)))]);
+  return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$25, 0));
 }
 function render(state$$1, dispatch) {
-  var names$$5, elems$$12, children$$6, names$$4, elems$$11;
+  var names$$27, elems$$22, children$$9, names$$26, elems$$21;
 
   if (state$$1.Weather == null) {
-    const xs$$16 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$5 = ["box", "weather", "loading-weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$5))), (elems$$12 = [(children$$6 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("--", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("span", {
-      children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$6)
-    }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$12)))]);
-    return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$16, 0));
+    const xs$$27 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$27 = ["box", "weather", "loading-weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$27))), (elems$$22 = [(children$$9 = new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]("Loading...", new _fable_fable_library_2_4_16_Types_js__WEBPACK_IMPORTED_MODULE_0__["List"]()), Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("span", {
+      children: _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(children$$9)
+    }))], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$22)))]);
+    return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$27, 0));
   } else {
     const weather$$5 = state$$1.Weather;
-    const xs$$15 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$4 = ["box", "weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$4))), (elems$$11 = [renderCurrentWeather(weather$$5, state$$1.Units), renderDailyWeather()], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$11)))]);
-    return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_4__["createObj"])(xs$$15, 0));
+    const xs$$26 = Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["ofArray"])([(names$$26 = ["weather"], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("className", Object(_fable_fable_library_2_4_16_String_js__WEBPACK_IMPORTED_MODULE_8__["join"])(" ", names$$26))), (elems$$21 = [renderCurrentWeather(weather$$5, state$$1.Units), renderDailyWeather((Object(_fable_fable_library_2_4_16_List_js__WEBPACK_IMPORTED_MODULE_2__["take"])(5, weather$$5.Daily)), state$$1.Units)], Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["mkAttr"])("children", _fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactApi"].Children.toArray(elems$$21)))]);
+    return Object(_fable_Feliz_0_68_10_Interop_fs__WEBPACK_IMPORTED_MODULE_13__["reactElement"])("div", Object(_fable_fable_library_2_4_16_Util_js__WEBPACK_IMPORTED_MODULE_5__["createObj"])(xs$$26, 0));
   }
 }
 
