@@ -9,6 +9,7 @@ open Extensions
 open Configuration
 open System
 open Fable.DateFunctions
+open Common
 
 type GeographicLocation = {
     Latitude: float;
@@ -300,7 +301,7 @@ let renderSunEvent (date: DateTime) sunEvent =
 
 let renderCurrentWeather currentWeather units =
     Html.div [
-        prop.classes [ "box"; "current-weather" ]
+        prop.classes [ "current-weather" ]
         prop.children [
             Html.div [
                 prop.classes [ "current-weather-temperature-container" ]
@@ -385,23 +386,23 @@ let renderDailyWeatherForecast (dailyWeather: DailyWeather) =
 
 let renderDailyWeather (dailyWeather: DailyWeather list) (units: MeasurementSystem) =
     Html.div [
-        prop.classes [ "box"; "forecasted-weather" ]
-        prop.children (dailyWeather |> List.map renderDailyWeatherForecast)
+        prop.classes [ "forecasted-weather" ]
+        prop.children (dailyWeather |> List.take 5 |> List.map renderDailyWeatherForecast)
     ]
 
 let render (state: State) (dispatch: Msg -> unit) =
     match state.Weather with
     | Some weather ->
         Html.div [
-            prop.classes [ "weather" ]
+            prop.classes [ "weather-container" ]
             prop.children [
-                renderCurrentWeather weather.Current state.Units
-                renderDailyWeather (weather.Daily |> List.take 5) state.Units
+                titledBox "Current Weather" (renderCurrentWeather weather.Current state.Units)
+                titledBox "Daily Forecast" (renderDailyWeather weather.Daily state.Units)
             ]
         ]
     | None ->
         Html.div [
-            prop.classes [ "box"; "weather"; "loading-weather" ]
+            prop.classes [ "box"; "weather-container"; "loading-weather" ]
             prop.children [
                 Html.span [
                     Html.text "Loading..."

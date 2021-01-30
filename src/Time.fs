@@ -7,6 +7,7 @@ open System
 open Fable.DateFunctions
 open Extensions
 open Configuration
+open Common
 
 type State = {
     Now: DateTime;
@@ -59,14 +60,22 @@ let renderDate (date: DateTime) =
         ]
     ]
 
+let renderDateAndTime now display24HourTime =
+    Html.div [
+        prop.classes [ "time" ]
+        prop.children [
+            if display24HourTime then
+                render24HourTime now
+            else
+                render12HourTime now
+            renderDate now
+        ]
+    ]
+
 let render (state: State) (dispatch: Msg -> unit) =
     Html.div [
-        prop.classes [ "box"; "time" ]
+        prop.classes [ "time-container" ]
         prop.children [
-            if state.Display24HourTime then
-                render24HourTime state.Now
-            else
-                render12HourTime state.Now
-            renderDate state.Now
+            titledBox "Date & Time" (renderDateAndTime state.Now state.Display24HourTime)
         ]
     ]

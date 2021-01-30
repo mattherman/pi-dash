@@ -21,6 +21,19 @@ body {
     border-width: 2px;
     box-shadow: 2px 4px 8px #888888;
     background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.box-title {
+    padding: 15px;
+    font-size: 25px;
+}
+
+.time-container {
+    display: flex;
+    flex: 1;
 }
 
 .time {
@@ -40,14 +53,13 @@ body {
     font-size: 50%;
 }
 
-.weather {
+.weather-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     flex: 2;
 }
 
-.weather > *:not(:last-child) {
+.weather-container > *:not(:last-child) {
     margin-bottom: 10px; 
 } 
 
