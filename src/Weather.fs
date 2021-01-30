@@ -260,8 +260,8 @@ let windSpeedUnits units =
     | Standard | Metric -> "m/s"
     | Imperial -> "mph"
 
-let renderWind weather units =
-    let iconClass = sprintf "from-%d-deg" weather.WindDirection
+let renderWind direction speed units =
+    let iconClass = sprintf "from-%d-deg" direction
     Html.div [
         prop.classes [ "wind" ]
         prop.children [
@@ -271,7 +271,7 @@ let renderWind weather units =
                 ]
             ]
             Html.div [
-                Html.text (sprintf "%.0f %s" weather.WindSpeed (windSpeedUnits units))
+                Html.text (sprintf "%.0f %s" speed (windSpeedUnits units))
             ]
         ]
     ]
@@ -298,7 +298,7 @@ let renderSunEvent (date: DateTime) sunEvent =
         ]
     ]
 
-let renderCurrentWeather weather units =
+let renderCurrentWeather currentWeather units =
     Html.div [
         prop.classes [ "box"; "current-weather" ]
         prop.children [
@@ -308,7 +308,7 @@ let renderCurrentWeather weather units =
                     Html.div [
                         prop.classes [ "current-weather-temperature" ]
                         prop.children [
-                            renderTemperature weather.Current.Temperature weather.Current.FeelsLikeTemperature units
+                            renderTemperature currentWeather.Temperature currentWeather.FeelsLikeTemperature units
                         ]
                     ]
                 ]
@@ -316,17 +316,17 @@ let renderCurrentWeather weather units =
             Html.div [
                 prop.classes [ "current-weather-condition-container" ]
                 prop.children [
-                    if not (List.isEmpty weather.Current.WeatherConditions) then
+                    if not (List.isEmpty currentWeather.WeatherConditions) then
                         Html.div [
                             prop.classes [ "current-weather-condition" ]
                             prop.children [
-                                renderWeatherCondition weather.Current.WeatherConditions.Head
+                                renderWeatherCondition currentWeather.WeatherConditions.Head
                             ]
                         ]
                     Html.div [
                         prop.classes [ "current-weather-wind" ]
                         prop.children [
-                            renderWind weather.Current units
+                            renderWind currentWeather.WindDirection currentWeather.WindSpeed units
                         ]
                     ]
                 ]
@@ -337,13 +337,13 @@ let renderCurrentWeather weather units =
                     Html.div [
                         prop.classes [ "current-weather-sun-event" ]
                         prop.children [
-                            renderSunEvent weather.Current.Sunrise Sunrise
+                            renderSunEvent currentWeather.Sunrise Sunrise
                         ]
                     ]
                     Html.div [
                         prop.classes [ "current-weather-sun-event" ]
                         prop.children [
-                            renderSunEvent weather.Current.Sunset Sunset
+                            renderSunEvent currentWeather.Sunset Sunset
                         ]
                     ]
                 ]
@@ -351,9 +351,9 @@ let renderCurrentWeather weather units =
         ]
     ]
 
-let renderDailyWeatherForecast (weather: DailyWeather) =
+let renderDailyWeatherForecast (dailyWeather: DailyWeather) =
     let dayOfWeek =
-        match weather.Date.DayOfWeek with
+        match dailyWeather.Date.DayOfWeek with
         | DayOfWeek.Sunday -> "SUN"
         | DayOfWeek.Monday -> "MON"
         | DayOfWeek.Tuesday -> "TUE"
@@ -366,17 +366,17 @@ let renderDailyWeatherForecast (weather: DailyWeather) =
     Html.div [
         prop.classes [ "forecasted-weather-daily-forecast" ]
         prop.children [
-            if not (List.isEmpty weather.WeatherConditions) then
+            if not (List.isEmpty dailyWeather.WeatherConditions) then
                 Html.div [
                     prop.classes [ "forecasted-weather-daily-forecast-condition" ]
                     prop.children [
-                        renderWeatherCondition (weather.WeatherConditions |> List.head)
+                        renderWeatherCondition (dailyWeather.WeatherConditions |> List.head)
                     ]
                 ]
             Html.div [
                 prop.classes [ "forecasted-weather-daily-forecast-temperature-range" ]
                 prop.children [
-                    renderTemperatureRange weather.HighTemperature weather.LowTemperature
+                    renderTemperatureRange dailyWeather.HighTemperature dailyWeather.LowTemperature
                 ]
             ]
             Html.div [
@@ -400,7 +400,7 @@ let render (state: State) (dispatch: Msg -> unit) =
         Html.div [
             prop.classes [ "weather" ]
             prop.children [
-                renderCurrentWeather weather state.Units
+                renderCurrentWeather weather.Current state.Units
                 renderDailyWeather (weather.Daily |> List.take 5) state.Units
             ]
         ]
