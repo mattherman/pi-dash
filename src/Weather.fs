@@ -305,12 +305,7 @@ let renderCurrentWeather currentWeather units =
             Html.div [
                 prop.classes [ "current-weather-temperature-container" ]
                 prop.children [
-                    Html.div [
-                        prop.classes [ "current-weather-temperature" ]
-                        prop.children [
-                            renderTemperature currentWeather.Temperature currentWeather.FeelsLikeTemperature units
-                        ]
-                    ]
+                    renderTemperature currentWeather.Temperature currentWeather.FeelsLikeTemperature units
                 ]
             ]
             Html.div [

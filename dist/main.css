@@ -55,14 +55,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    height: 100%;
     flex: 1;
 }
 
 .current-weather-temperature-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .temperature-unit {
@@ -75,13 +74,6 @@ body {
     font-size: 20px;
 }
 
-.current-weather-temperature {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-}
-
 .temperature-range {
     display: flex;
     flex-direction: row;
@@ -92,22 +84,12 @@ body {
     margin-right: 15px;
 }
 
-.current-weather-temperature-range {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-}
-
 .current-weather-condition-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 .weather-condition {
-    display: flex;
-    flex-direction: column;
     font-size: 20px;
     text-align: center;
 }
@@ -125,8 +107,6 @@ body {
 }
 
 .wind {
-    display: flex;
-    flex-direction: column;
     font-size: 20px;
     text-align: center;
 }
@@ -145,7 +125,6 @@ body {
 .current-weather-sun-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 .current-weather-sun-event {
@@ -184,8 +163,7 @@ body {
 }
 
 .forecasted-weather-daily-forecast-day {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     font-size: 25px;
 }
 
