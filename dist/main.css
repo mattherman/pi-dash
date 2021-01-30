@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 60px;
+    font-size: 54px;
     background-color: #a5d8dd;
 }
 
@@ -29,6 +29,8 @@ body {
 .box-title {
     padding: 15px;
     font-size: 25px;
+    font-weight: bold;
+    color: gray;
 }
 
 .time-container {
@@ -89,7 +91,7 @@ body {
 .temperature-range {
     display: flex;
     flex-direction: row;
-    font-size: 35px;
+    font-size: 22px;
 }
 
 .temperature-range > :first-child {
@@ -102,12 +104,12 @@ body {
 }
 
 .weather-condition {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
 }
 
 .weather-condition-icon {
-    font-size: 50px;
+    font-size: 45px;
     padding-bottom: 10px;
 }
 
@@ -119,12 +121,12 @@ body {
 }
 
 .wind {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
 }
 
 .wind-icon {
-    font-size: 50px;
+    font-size: 45px;
 }
 
 .current-weather-wind {
@@ -147,12 +149,12 @@ body {
 }
 
 .sun-event-icon {
-    font-size: 50px;
+    font-size: 45px;
     padding-bottom: 10px;
 }
 
 .sun-event {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
 }
 
@@ -161,7 +163,7 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
     flex: 1;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .forecasted-weather-daily-forecast {
@@ -176,7 +178,7 @@ body {
 
 .forecasted-weather-daily-forecast-day {
     text-align: center;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .loading-weather {
